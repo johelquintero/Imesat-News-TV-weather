@@ -65,7 +65,7 @@ setInterval(
     var today = new Date();
 
     $('#date').text( today.toString().slice(4,10).trimRight() );
-    $('#time').text( today.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric', second: 'numeric' }).replace(/ /g,'') );
+    $('#time').text( today.toLocaleTimeString('es-eS', { hour: 'numeric', hour12: true, minute: 'numeric', second: 'numeric' }).replace(/ /g,'') );
   }
 , 1000);
 //location pull
@@ -79,7 +79,7 @@ queryString = window.location.search;
 
 function getMainLoc(configFailed) {
   if (queryString) {
-    $.getJSON("https://api.weather.com/v3/location/search?query="+queryString.split("?")[1]+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
+    $.getJSON("https://api.weather.com/v3/location/search?query="+queryString.split("?")[1]+"&language=es-ES&format=json&apiKey=" + api_key, function(data) {
       getExtraLocs(data.location.latitude[0],data.location.longitude[0],true);
       maincitycoords.lat = data.location.latitude[0]
       maincitycoords.lon = data.location.longitude[0]
@@ -96,7 +96,7 @@ function getMainLoc(configFailed) {
     });
   } else if (locationSettings.mainLocation.searchQuery.type && configFailed != true) {
     if (locationSettings.mainLocation.searchQuery.type == "geocode") {
-      $.getJSON("https://api.weather.com/v3/location/point?geocode="+ locationSettings.mainLocation.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+      $.getJSON("https://api.weather.com/v3/location/point?geocode="+ locationSettings.mainLocation.searchQuery.val + "&language=es-ES&format=json&apiKey=" + api_key, function(data) {
         getExtraLocs(data.location.latitude,data.location.longitude,true);
         maincitycoords.lat = data.location.latitude
         maincitycoords.lon = data.location.longitude
@@ -112,7 +112,7 @@ function getMainLoc(configFailed) {
         pbTMRW()
       });
     } else {
-      $.getJSON("https://api.weather.com/v3/location/search?query="+locationSettings.mainLocation.searchQuery.val+"&locationType="+locationSettings.mainLocation.searchQuery.type+"&fuzzyMatch="+locationSettings.mainLocation.searchQuery.fuzzy+((locationSettings.mainLocation.searchQuery.country) ? "&countryCode="+locationSettings.mainLocation.searchQuery.country : "")+((locationSettings.mainLocation.searchQuery.state) ? "&adminDistrictCode="+locationSettings.mainLocation.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
+      $.getJSON("https://api.weather.com/v3/location/search?query="+locationSettings.mainLocation.searchQuery.val+"&locationType="+locationSettings.mainLocation.searchQuery.type+"&fuzzyMatch="+locationSettings.mainLocation.searchQuery.fuzzy+((locationSettings.mainLocation.searchQuery.country) ? "&countryCode="+locationSettings.mainLocation.searchQuery.country : "")+((locationSettings.mainLocation.searchQuery.state) ? "&adminDistrictCode="+locationSettings.mainLocation.searchQuery.state : "")+"&language=es-ES&format=json&apiKey=" + api_key, function(data) {
           cidx = ((locationSettings.mainLocation.searchQuery.searchResultNum && locationSettings.mainLocation.searchQuery.searchResultNum < data.location.placeId.length) ? locationSettings.mainLocation.searchQuery.searchResultNum : 0)
           getExtraLocs(data.location.latitude[cidx],data.location.longitude[cidx],true);
           maincitycoords.lat = data.location.latitude[cidx]
@@ -157,7 +157,7 @@ function getExtraLocs(lat,lon, onInit, whichReset) {
       var minRadiusMiles = 0, maxRadiusMiles = 45;
       getLocLoop(0);
 			function getLocLoop(i) {
-        $.getJSON("https://api.weather.com/v3/location/point?geocode="+ feature.latitude[i] + "," + feature.longitude[i] + "&language=en-US&format=json&apiKey=" + api_key, function(dataii){
+        $.getJSON("https://api.weather.com/v3/location/point?geocode="+ feature.latitude[i] + "," + feature.longitude[i] + "&language=es-ES&format=json&apiKey=" + api_key, function(dataii){
   				latgeo = feature.latitude[i];
   				longeo = feature.longitude[i];
   				dist = feature.distanceMi[i];
@@ -231,12 +231,12 @@ function getExtraLocs(lat,lon, onInit, whichReset) {
           eloc = locationSettings.extraLocations.locs[i]
           if (eloc.searchQuery.type) {
             if (eloc.searchQuery.type == "geocode") {
-              $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+              $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=eS-ES&format=json&apiKey=" + api_key, function(data) {
                 locList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
                 if (i < locationSettings.extraLocations.locs.length-1) {addConfigLocsLoop(i + 1)} else {sortFinishedLocList()}
               }).fail(function(){if (i < locationSettings.extraLocations.locs.length-1) {addConfigLocsLoop(i + 1)} else {sortFinishedLocList()}});
             } else {
-              $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
+              $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=es-ES&format=json&apiKey=" + api_key, function(data) {
                   cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
                   locList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
                   if (i < locationSettings.extraLocations.locs.length-1) {addConfigLocsLoop(i + 1)} else {sortFinishedLocList()}
@@ -249,12 +249,12 @@ function getExtraLocs(lat,lon, onInit, whichReset) {
           eloc = locationSettings.aroundCityInfoLocs.locs[i]
           if (eloc.searchQuery.type) {
             if (eloc.searchQuery.type == "geocode") {
-              $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+              $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=es-ES&format=json&apiKey=" + api_key, function(data) {
                 citySlideList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
                 if (i < locationSettings.aroundCityInfoLocs.locs.length-1) {addConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
               }).fail(function(){if (i < locationSettings.aroundCityInfoLocs.locs.length-1) {addConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}});
             } else {
-              $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
+              $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=es-ES&format=json&apiKey=" + api_key, function(data) {
                   cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
                   citySlideList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
                   if (i < locationSettings.aroundCityInfoLocs.locs.length-1) {addConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
@@ -397,17 +397,37 @@ dayDesc: {
     {displayname:"Seattle - Tacoma Int'l",iata:"SEA",delay:"No Delay",temp:"",icon:"",windspeed:""},
     {displayname:"Lambert - St. Louis Int'l",iata:"STL",delay:"No Delay",temp:"",icon:"",windspeed:""},
   ]},
-  travel:{noReport:false,cities:[
-   {displayname:"New York City",lat:"40.7306",lon:"-73.9352",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Chicago",lat:"41.8818",lon:"-87.6231",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Los Angeles",lat:"34.0522",lon:"-118.2436",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Atlanta",lat:"33.7537",lon:"-84.3863",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Dallas",lat:"32.7791",lon:"-96.8088",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Boston",lat:"42.3611",lon:"-71.0570",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Orlando",lat:"28.5383",lon:"-81.3792",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"Washington, DC",lat:"38.8951",lon:"-77.0364",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-   {displayname:"San Francisco",lat:"37.7739",lon:"122.4312",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]}
- ]},
+
+  travel:{
+    noReport:false,
+    cities:[
+      {displayname:"Trujillo",lat:"9.3667",lon:"-70.4333",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Merida",lat:"8.5983",lon:"-71.1444",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Tachira",lat:"7.8175",lon:"-72.0642",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Zulia",lat:"10.6667",lon:"-71.6167",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Barinas",lat:"8.6226",lon:"-70.2075",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Portuguesa",lat:"9.3503",lon:"-69.1658",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Apure",lat:"7.9064",lon:"-67.4688",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Cojedes",lat:"9.3783",lon:"-68.3242",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Guarico",lat:"9.0418",lon:"-66.5830",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Falcon",lat:"11.1811",lon:"-69.8597",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Lara",lat:"10.0739",lon:"-69.3228",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Yaracuy",lat:"10.3417",lon:"-68.7324",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Nueva Esparta",lat:"10.99707230",lon:"-63.91132960",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Vargas (actualmente conocido como La Guaira)",lat:"10.8333",lon:"-67.1167",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Anzoátegui",lat:"10.06357580",lon:"-67.28478750",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Monagas",lat:"9.97026",lon:"-63.48727",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Sucre",lat:"10.6407",lon:"-64.3333",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Aragua",lat:"10.06357580",lon:"-67.28478750",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Carabobo",lat:"10.11764330",lon:"-68.04775090",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Miranda",lat:"10.473055555556",lon:"-66.995555555556",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Distrito Capital",lat:"10.473056",lon:"-66.995556",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+      {displayname:"Amazonas",lat:"3.41684270",lon:"-65.85606460",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]}
+   
+  ]}   
+ 
+
+ ,
  international:{noReport:false,cities:[
   {displayname:"Toronto",lat:"43.6510",lon:"-79.3470",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
   {displayname:"London",lat:"51.5098",lon:"-0.1180",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
@@ -432,7 +452,7 @@ function grabCity8SlidesData() {
   citySlideList.forEach((loc, i) => {
     url += `${loc.lat},${loc.lon};`
   });
-  url += "&language=en-US&units=e&format=json&apiKey=" + api_key
+  url += "&language=es-ES&units=e&format=json&apiKey=" + api_key
 
   $.getJSON(url, function(data) {
     data.forEach((ajaxedLoc, i) => {
@@ -452,7 +472,7 @@ function grabTravelData() {
   weatherInfo.travel.cities.forEach((loc, i) => {
     url += `${loc.lat},${loc.lon};`
   });
-  url += "&language=en-US&units=e&format=json&apiKey=" + api_key
+  url += "&language=es-ES&units=e&format=json&apiKey=" + api_key
   $.getJSON(url, function(data) {
     data.forEach((ajaxedLoc, i) => {
       var daycorrection = 0;
@@ -475,7 +495,7 @@ function grabInternationalData() {
   weatherInfo.international.cities.forEach((loc, i) => {
     url += `${loc.lat},${loc.lon};`
   });
-  url += "&language=en-US&units=e&format=json&apiKey=" + api_key
+  url += "&language=es-ES&units=e&format=json&apiKey=" + api_key
   $.getJSON(url, function(data) {
     data.forEach((ajaxedLoc, i) => {
       var daycorrection = 0;
@@ -506,7 +526,7 @@ function grabCitySlidesData() {
   locList.forEach((loc, i) => {
     url += `${loc.lat},${loc.lon};`
   });
-  url += "&language=en-US&units=e&format=json&apiKey=" + api_key
+  url += "&language=es-eS&units=e&format=json&apiKey=" + api_key
 
   $.getJSON(url, function(data) {
     data.forEach((ajaxedLoc, i) => {
@@ -547,9 +567,9 @@ function grabCitySlidesData() {
             function buildHourlyTimeTitle(time){
               var hour=dateFns.getHours(time);
               if (hour===0) {
-                return 'Midnight';
+                return 'Medianochet';
               } else if (hour===12){
-                return 'Noon';
+                return 'Medio dia';
               }
               return (dateFns.format(time,'h a')).replace(" ", "");
             }
@@ -686,9 +706,9 @@ function grabCitySlidesData() {
                 dateFns.format(new Date(expiretime), "h:mm");
                 if (dateFns.isToday(expiretime) != true) {
                   var numday = dateFns.getDay(expiretime);
-                  displayday = {"0":"SUN","1":"MON","2":"TUE","3":"WED","4":"THU","5":"FRI","6":"SAT"}[numday] + ".";
+                  displayday = {"0":"Dom","1":"Lun","2":"Mar","3":"Mie","4":"Jue","5":"Vie","6":"Sab"}[numday] + ".";
                 } else {
-                  displayday = "Today."
+                  displayday = "Hoy."
                 }
                 return dateFns.format(new Date(expiretime), "h:mm A ") + displayday
               }
@@ -744,7 +764,7 @@ function grabSideandLowerBarData() {
   weatherInfo.bulletin.severewarnings = [];
   var url = "https://api.weather.com/v3/aggcommon/v3alertsHeadlines;v3-wx-forecast-daily-5day;v3-wx-observations-current;v3-wx-forecast-hourly-2day?geocodes="
   url += `${maincitycoords.lat},${maincitycoords.lon};`
-  url += "&language=en-US&units=e&format=json&apiKey=" + api_key
+  url += "&language=es-ES&units=e&format=json&apiKey=" + api_key
 
   $.getJSON(url, function(data) {
         var ajaxedLoc = data[0]
@@ -771,7 +791,7 @@ function grabSideandLowerBarData() {
             weatherInfo.currentCond.sidebar.pressureTrend = ((ajaxedLoc["v3-wx-observations-current"].pressureTendencyCode === 1 || ajaxedLoc["v3-wx-observations-current"].pressureTendencyCode === 3) ? '↑' : (ajaxedLoc["v3-wx-observations-current"].pressureTendencyCode === 2 || ajaxedLoc["v3-wx-observations-current"].pressureTendencyCode === 4) ? '↓' : ' S')
             weatherInfo.currentCond.sidebar.wind = ((ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal == "CALM" || ajaxedLoc["v3-wx-observations-current"].windSpeed == 0) ? 'calm' :  ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal) + ' ' + ((ajaxedLoc["v3-wx-observations-current"].windSpeed === 0) ? '' : ajaxedLoc["v3-wx-observations-current"].windSpeed)
             weatherInfo.currentCond.sidebar.windspeed = ajaxedLoc["v3-wx-observations-current"].windSpeed
-            weatherInfo.currentCond.sidebar.gust = ((ajaxedLoc["v3-wx-observations-current"].windGust!=undefined) ? ajaxedLoc["v3-wx-observations-current"].windGust + " mph" : "none")
+            weatherInfo.currentCond.sidebar.gust = ((ajaxedLoc["v3-wx-observations-current"].windGust!=undefined) ? ajaxedLoc["v3-wx-observations-current"].windGust + " Km/h" : "none")
             weatherInfo.currentCond.sidebar.visibility = ajaxedLoc["v3-wx-observations-current"].visibility
             weatherInfo.currentCond.sidebar.uvidx = ajaxedLoc["v3-wx-observations-current"].uvDescription
             weatherInfo.currentCond.sidebar.ceiling = ajaxedLoc["v3-wx-observations-current"].cloudCeiling
@@ -789,9 +809,9 @@ function grabSideandLowerBarData() {
         function buildHourlyTimeTitle(time){
           var hour=dateFns.getHours(time);
           if (hour===0) {
-            return 'Midnight';
+            return 'Medianoche';
           } else if (hour===12){
-            return 'Noon';
+            return 'Mediodia';
           }
           return (dateFns.format(time,'h a'))//.replace(" ", "");
         }
@@ -836,7 +856,7 @@ function grabSideandLowerBarData() {
         function buildHourlyHeaderTitle(time) {
           var today = new Date(),
             tomorrow = dateFns.addDays(today, 1);
-            sforecast = "'s Forecast";
+            sforecast = "'Pronóstico";
 
           // title based on the first hour reported
           switch (dateFns.getHours(time)) {
@@ -850,16 +870,16 @@ function grabSideandLowerBarData() {
               return dateFns.format(tomorrow, 'dddd') + sforecast;
 
             case 12:
-              return 'This Afternoon';
+              return 'Esta tarde';
 
             case 15:
-              return "Today's Forecast";
+              return "Pronóstico de hoy";
 
             case 17:
-              return "Tonight's Forecast";
+              return "Pronóstico de esta noche";
 
             case 20:
-              return dateFns.format(today, 'ddd') + ' Night/' + dateFns.format(tomorrow, 'ddd');
+              return dateFns.format(today, 'ddd') + 'Noche/' + dateFns.format(tomorrow, 'ddd');
 
           }
         }
@@ -925,7 +945,7 @@ function grabSideandLowerBarData() {
         if (ret.length != 0) {
           ret.sort(function(a,b) {return a.priority - b.priority;});
             function pushAlert(aai) {
-              $.getJSON('https://api.weather.com/v3/alerts/detail?alertId='+ ajaxedLoc["v3alertsHeadlines"].alerts[ret[aai].idx].detailKey +'&format=json&language=en-US&apiKey=' + api_key, function(adata) {
+              $.getJSON('https://api.weather.com/v3/alerts/detail?alertId='+ ajaxedLoc["v3alertsHeadlines"].alerts[ret[aai].idx].detailKey +'&format=json&language=eS-ES&apiKey=' + api_key, function(adata) {
                 var alertt = {name:"", desc:"", status:"", significance:""}
                 alertt.name = ajaxedLoc["v3alertsHeadlines"].alerts[ret[aai].idx].eventDescription
                 alertt.significance = ajaxedLoc["v3alertsHeadlines"].alerts[ret[aai].idx].significance
@@ -942,7 +962,7 @@ function grabSideandLowerBarData() {
             weatherInfo.bulletin.severeweathermode = true;
             sret.sort(function(a,b) {return a.priority - b.priority;});
             function pushSevereAlert(aai) {
-              $.getJSON('https://api.weather.com/v3/alerts/detail?alertId='+ ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].detailKey +'&format=json&language=en-US&apiKey=' + api_key, function(sdata) {
+              $.getJSON('https://api.weather.com/v3/alerts/detail?alertId='+ ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].detailKey +'&format=json&language=es-ES&apiKey=' + api_key, function(sdata) {
                 var severewarn = {warningname:"", warningdesc:"", warningstatus:""}
                 severewarn.warningname = ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].eventDescription
                 severewarn.warningstatus = ((ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].messageType == "Update") ? 'UPDATE' : (ajaxedLoc["v3alertsHeadlines"].alerts[sret[aai].idx].messageType == "Cancel") ? "CANCELLATION" : "")
@@ -974,7 +994,7 @@ function pbTMRW() {
   weatherInfo.bulletin.severewarnings = [];
   var url = "https://api.weather.com/v3/wx/forecast/daily/3day?geocode="
   url += `${maincitycoords.lat},${maincitycoords.lon}`;
-  url += "&language=en-US&units=e&format=json&apiKey=" + api_key
+  url += "&language=es-ES&units=e&format=json&apiKey=" + api_key
 
   $.getJSON(url, function(data) {
         var ajaxedLoc = data[0]
@@ -1017,7 +1037,7 @@ function pbTMRW() {
 }
 
 function grabalmanacSlidesData() {
-  url = 'https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3-wx-observations-current?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&format=json&language=en-US&units=e" + "&day=" + dateFns.format(new Date(), "D") + "&month=" + dateFns.format(new Date(),"M") + "&apiKey=" + api_key
+  url = 'https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3-wx-observations-current?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&format=json&language=es-ES&units=e" + "&day=" + dateFns.format(new Date(), "D") + "&month=" + dateFns.format(new Date(),"M") + "&apiKey=" + api_key
     $.getJSON(url, function(data) {
       if (data == null) {
         weatherInfo.almanac.displayname = maincitycoords.displayname
@@ -1044,7 +1064,7 @@ function grabalmanacSlidesData() {
       for (phase in data.phase) {
         console.log(phasesfound)
         if (data.phase[phase].isPhaseLimit && phasesfound < 4 && phase > parseInt(dateFns.format(new Date(),"D"))) {
-          weatherInfo.almanac.moonphases[phasesfound].name = {"new moon": "NEW", "first quarter": "FIRST", "full moon": "FULL", "last quarter": "LAST"}[(data.phase[phase].phaseName).toLowerCase()]
+          weatherInfo.almanac.moonphases[phasesfound].name = {"New moon": "Nueva", "first quarter": "Primera", "full moon": "Llena", "last quarter": "Ultima"}[(data.phase[phase].phaseName).toLowerCase()]
           weatherInfo.almanac.moonphases[phasesfound].date = String(data.monthName).slice(0,3) + " " + phase
           phasesfound += 1;
         }
@@ -1058,7 +1078,7 @@ function grabalmanacSlidesData() {
         for (phase in data.phase) {
           if (data.phase[phase].isPhaseLimit && phasesfound < 4) {
             console.log(phasesfound)
-            weatherInfo.almanac.moonphases[phasesfound].name = {"new moon": "NEW", "first quarter": "FIRST", "full moon": "FULL", "last quarter": "LAST"}[(data.phase[phase].phaseName).toLowerCase()]
+            weatherInfo.almanac.moonphases[phasesfound].name = {"New moon": "Nueva", "first quarter": "Primera", "full moon": "Llena", "last quarter": "Ultima"}[(data.phase[phase].phaseName).toLowerCase()]
             weatherInfo.almanac.moonphases[phasesfound].date = String(data.monthName).slice(0,3) + " " + phase
             phasesfound += 1;
           }
@@ -1067,7 +1087,7 @@ function grabalmanacSlidesData() {
     }
 }
 function grabHealthData() {
-  $.getJSON('https://api.weather.com/v3/wx/forecast/daily/5day?geocode='+ maincitycoords.lat + ',' + maincitycoords.lon +"&format=json&language=en-US&units=e&apiKey=" + api_key, function(data) {
+  $.getJSON('https://api.weather.com/v3/wx/forecast/daily/5day?geocode='+ maincitycoords.lat + ',' + maincitycoords.lon +"&format=json&language=es-ES&units=e&apiKey=" + api_key, function(data) {
     var healthforecastdata = data
     var starthidx = 0;
     var starthidxdayonly = 0;
@@ -1086,7 +1106,7 @@ function grabHealthData() {
     weatherInfo.healthforecast.wind = (((healthforecastdata.daypart[0].windDirectionCardinal[starthidx] == "CALM") ? 'calm' :  healthforecastdata.daypart[0].windDirectionCardinal[starthidx]) + ' ' + ((healthforecastdata.daypart[0].windSpeed[starthidx] === 0) ? '' : healthforecastdata.daypart[0].windSpeed[starthidx]))
     weatherInfo.healthforecast.windspeed = healthforecastdata.daypart[0].windSpeed[starthidx]
   });
-  $.getJSON('https://api.weather.com/v1/geocode/'+ maincitycoords.lat + '/' + maincitycoords.lon + '/observations/pollen.json?language=en-US&apiKey=' + api_key, function(pollendata) {
+  $.getJSON('https://api.weather.com/v1/geocode/'+ maincitycoords.lat + '/' + maincitycoords.lon + '/observations/pollen.json?language=eS-ES&apiKey=' + api_key, function(pollendata) {
     if (pollendata.pollenobservations !== undefined) {
     if (pollendata.pollenobservations[0].stn_cmnt != "No Report" && pollendata.pollenobservations[0].stn_cmnt != "Equipment Failure" && pollendata.pollenobservations[0].stn_cmnt != "Reports only during weed pollen season" && pollendata.pollenobservations[0].stn_cmnt != "Does not report year round" && pollendata.pollenobservations[0].stn_cmnt != "Reports Suspended") {
       if (pollendata.pollenobservations[0].total_pollen_cnt <= 9) {
@@ -1108,7 +1128,7 @@ function grabHealthData() {
     }
     }
   });
-  $.getJSON('https://api.weather.com/v2/indices/achePain/daypart/3day?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+  $.getJSON('https://api.weather.com/v2/indices/achePain/daypart/3day?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=es-ES&format=json&apiKey=" + api_key, function(data) {
     var achesindexdata = data
     var startidx = 0;
     if (achesindexdata.achesPainsIndex12hour.dayInd[0] == 'N') {
@@ -1118,7 +1138,7 @@ function grabHealthData() {
     weatherInfo.healthAcheBreath.achescat = achesindexdata.achesPainsIndex12hour.achesPainsCategory[startidx]
     weatherInfo.healthAcheBreath.date = dateFns.format(new Date(achesindexdata.achesPainsIndex12hour.fcstValidLocal[0]), "dddd")
   });
-  $.getJSON('https://api.weather.com/v2/indices/breathing/daypart/3day?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+  $.getJSON('https://api.weather.com/v2/indices/breathing/daypart/3day?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=es-ES&format=json&apiKey=" + api_key, function(data) {
     var breathindexdata = data
     var startidx = 0;
     if (breathindexdata.breathingIndex12hour.dayInd[0] == 'N') {
@@ -1127,18 +1147,18 @@ function grabHealthData() {
     weatherInfo.healthAcheBreath.breathindex = breathindexdata.breathingIndex12hour.breathingIndex[startidx]
     weatherInfo.healthAcheBreath.breathcat = breathindexdata.breathingIndex12hour.breathingCategory[startidx]
   });
-  $.getJSON('https://api.weather.com/v3/wx/globalAirQuality?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=en-US&scale=EPA&format=json&apiKey=" + api_key, function(data) {
+  $.getJSON('https://api.weather.com/v3/wx/globalAirQuality?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=es-ES&scale=EPA&format=json&apiKey=" + api_key, function(data) {
     var airqualitydata = data
     weatherInfo.airquality.airqualityindex = airqualitydata.globalairquality.airQualityCategoryIndex
-    weatherInfo.airquality.primarypolute = (airqualitydata.globalairquality.primaryPollutant).replace('PM10','Fine Particulate').replace('PM2.5','Fine Particulate').replace('O3','Ozone')
+    weatherInfo.airquality.primarypolute = (airqualitydata.globalairquality.primaryPollutant).replace('PM10','Partículas finas').replace('PM2.5','Partículas finas').replace('O3','Ozono')
     weatherInfo.airquality.date = dateFns.format(new Date(airqualitydata.globalairquality.expireTimeGmt * 1000), "dddd")
   });
-  $.getJSON('https://api.weather.com/v2/indices/uv/current?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+  $.getJSON('https://api.weather.com/v2/indices/uv/current?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=es-ES&format=json&apiKey=" + api_key, function(data) {
     var uvData = data
     weatherInfo.uvindex.currentuv.index = uvData.uvIndexCurrent.uvIndex
     weatherInfo.uvindex.currentuv.desc = uvData.uvIndexCurrent.uvDesc
   });
-  $.getJSON('https://api.weather.com/v2/indices/uv/hourly/48hour?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+  $.getJSON('https://api.weather.com/v2/indices/uv/hourly/48hour?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&language=es-ES&format=json&apiKey=" + api_key, function(data) {
     var uvData = data
     var indexes = calcHourlyReport(uvData.uvIndex1hour);
     var i;
@@ -1244,7 +1264,7 @@ function grabAirportData() {
   for (var i = 0; i < weatherInfo.airport.mainairports.length; i++) {
     mairporturl += weatherInfo.airport.mainairports[i].iata + ';'
   }
-  mairporturl += '&language=en-US&units=e&format=json&apiKey='+ api_key
+  mairporturl += '&language=es-ES&units=e&format=json&apiKey='+ api_key
   //{displayname:"New York / LaGaurdia",iata:"LGA",delay:"No Delay",temp:""}
   $.getJSON(mairporturl, function(data) {
     weatherInfo.ccticker.ccairportdelays = []
@@ -1297,7 +1317,7 @@ function grabAirportData() {
   for (var i = 0; i < weatherInfo.airport.otherairports.length; i++) {
     oairporturl += weatherInfo.airport.otherairports[i].iata + ';'
   }
-  oairporturl += '&language=en-US&units=e&format=json&apiKey='+ api_key
+  oairporturl += '&language=es-eS&units=e&format=json&apiKey='+ api_key
   $.getJSON(oairporturl, function(data) {
     data.forEach((airport, i) => {
       var airportdelays = {iato:"",type:"",amount:"",amountmin:0,reason:""};
@@ -1323,9 +1343,9 @@ function pullCCTickerData() {
     ccTickerCitiesList.forEach((loc, i) => {
       ccurl += `${loc.lat},${loc.lon};`
     });
-    ccurl += '&language=en-US&units=e&format=json&apiKey='+ api_key
+    ccurl += '&language=es-eS&units=e&format=json&apiKey='+ api_key
   } else {
-    ccurl = 'https://api.weather.com/v3/aggcommon/v3-wx-forecast-daily-5day;v3-wx-observations-current;v3-location-point?geocodes=41.881832,-87.623177;44.986656,-93.258133;33.427204,-111.939896;46.877186,-96.789803;34.187042,-118.381256;33.660057,-117.998970;36.114647,-115.172813;21.315603,-157.858093;28.538336,-81.379234;43.0,-75.0;&language=en-US&units=e&format=json&apiKey='+ api_key
+    ccurl = 'https://api.weather.com/v3/aggcommon/v3-wx-forecast-daily-5day;v3-wx-observations-current;v3-location-point?geocodes=41.881832,-87.623177;44.986656,-93.258133;33.427204,-111.939896;46.877186,-96.789803;34.187042,-118.381256;33.660057,-117.998970;36.114647,-115.172813;21.315603,-157.858093;28.538336,-81.379234;43.0,-75.0;&language=es-ES&units=e&format=json&apiKey='+ api_key
   }
   weatherInfo.ccticker.ccLocs = [];
   $.getJSON(ccurl, function(data) {

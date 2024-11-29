@@ -1,13 +1,12 @@
-//Some of the settings may or may not work as this is not a fully completed update. Mainly Appearance settings and weather variables that arent finished.
 //Input API Keys below. If no API is inputted, sim will default to no report.
 var api_key = 'e1f10a1e78da46f5b10a1e78da96f525';
 var map_key = 'sk.eyJ1IjoicGljZWxib2kiLCJhIjoiY2xraXFhZzl6MDV3bDN0azZ0YjNrYmgwYSJ9.8plxnS0F8bbz3hI1pAaCuQ'
 //Weatherscan.net mapbox key
 //var map_key = 'pk.eyJ1Ijoid2VhdGhlciIsImEiOiJjaW4wbzllcjkwYWtrd2JsdWl3dG1hZjZ1In0.AdcjoWQiVfvjHfOB0nsyeQ';
 
-
 //Apperance settings. Fields left blank will use defaults. Will only refresh upon reload.
 var apperanceSettings = {
+  language: 'es-ES', // Agregamos esta línea para cambiar el idioma a español
   iconSet:"2023", //2007 or 2010 
   serialNumber:" TPBC3141592",// Ex. "TWCS02983932"
   headinID:" Nowhere | 31415926535", // Ex. "0298393223"
@@ -16,8 +15,9 @@ var apperanceSettings = {
   corebackgroud:"neighborhood", //forest, mountain, city, buildings, neighborhood, southwest, ocean. Default is buildings.
   backgroudType:"",//Set to
   backgroudURL:"",//If background type set to "custom" will use this url. URL can be a website or local file path.
-  marqueeAd: ["Weirderscan is brought to you by GitHub pages. Made by Goldblaze, ruined by PicelBoi, blah blah blah."], //Array of strings. Each string will be a seperate marquee ad.
+  marqueeAd: ["El escaneo meteorologico presentado por imesat news tv es un emulador del antiguo canal de cable weatherscan de informacion meteorologica."], //Array of strings. Each string will be a seperate marquee ad.
 }
+
 var slideApperanceSettings = {//Ill add more options here eventually.
   localDoppler: {},
   cityIntro: {},
@@ -51,6 +51,9 @@ var slideApperanceSettings = {//Ill add more options here eventually.
   uvIndex: {cityHeaderEnding: ""},
   healthTip: {cityHeaderEnding: ""},
   moreInfoImage: {cityHeaderEnding: ""},
+  moreInfoImage1: {cityHeaderEnding: ""},
+  
+
 }
 /*For locidx, all, extra, or number can be used. Random or reverse can be used with all or extra.
 All will add all the cities to the loop and extra will add all but the main.
@@ -92,15 +95,15 @@ var audioSettings = {
 }
 var locationSettings = {
   mainLocation:{
-    displayName:"",//Name that will show up on the sim.
-    searchQuery:{ //Type and val are required fields for search to work. Will be overridden if location is given in URL.
-      type:"",//Leave type blank to use automatic search. "geocode", "state", "district", "city", "locality", "neighborhood", "postal" (zipcode), "address", "poi", "pws" (personal weatherstation) //If geocode is used all otherfields but val will be ignored.
-      fuzzy:true, //Attempt approximate search.
-      country:"US", //Two letter country code. //Recommend using "US".
-      state:"", //Two letter state code.
-      val:"", //for geocode "lat,lon"
-      searchResultNum:2,//Defaults to 0. Use if the first result for a particular location sucks.
+    displayName:"", //Nombre que se mostrará en el simulador.
+    searchQuery:{ 
+      type:"city", //Usamos "city" para buscar por el nombre de la ciudad.
+      fuzzy:true, //Intenta una búsqueda aproximada.
+      country:"VE", //Código de dos letras del país.
+      val:"Valera", //Nombre de la ciudad.
+      searchResultNum:0, //Usa el primer resultado de la búsqueda.
     }
+
   },
   extraLocations: {
     useAutoLocations: true, //Will add automatically searched locations to the list.
@@ -146,7 +149,7 @@ var locationSettings = {
   ]},
   aroundCityInfoLocs: {
     useAutoLocations: true, //Will add automatically searched locations to the list.
-    maxLocations: 6, //Will limit amount of locations that appear on sim. Default is 8. Hard Limit is 8.
+    maxLocations: 20, //Will limit amount of locations that appear on sim. Default is 8. Hard Limit is 8.
     locationOrderNum:[5,4,3,2,6,1], //Ordernum for automatically generated locations. Lower number will be placed closer to the front.
     locs:[//Cities for the nearby cities slide
     {
@@ -432,10 +435,10 @@ var weatherInfoSettings = {
     ]},*/
     weatherLocs:[]
   }, almanac: {displayname:"",date:"",avghigh:"",avglow:"",rechigh:"",reclow:"",rechighyear:"",reclowyear:"",sunrise:"",sunset:"",moonphases:[
-    {name:"NEW",date:"Feb 10"},
-    {name:"FIRST",date:"Feb 16"},
-    {name:"FULL",date:"Feb 21"},
-    {name:"LAST",date:"Feb 27"},
+    {name:"Nueva",date:"Feb 10"},
+    {name:"Creciente",date:"Feb 16"},
+    {name:"Llena",date:"Feb 21"},
+    {name:"Menguante",date:"Feb 27"},
   ]}, bulletin: {
     //loc:{displayname:"",pages:[]},
     includesevereonbulletin: false,
@@ -447,10 +450,10 @@ var weatherInfoSettings = {
     //{name:"", desc:"", status:"", significance:""}
   }, healthforecast: {noReport:false, displayname:"",dayidx:0, day:"", high:"", low:"", precipChance:"", humid:"", wind:"",windspeed:"", icon:""
   }, healthPollen: {noReport:false, displayname:"", total:"", totalcat:"", date:"", types:[
-    {type:"tree", treetype:"", pollenidx:""},
-    {type:"grass", pollenidx:""},
-    {type:"weed", pollenidx:""},
-    {type:"mold", pollenidx:""},
+    {type:"Arbol", treetype:"", pollenidx:""},
+    {type:"Césped", pollenidx:""},
+    {type:"hierba", pollenidx:""},
+    {type:"moho", pollenidx:""},
   ]}, healthAcheBreath: {noReport:false, date:"",achesindex:"",achescat:"",breathindex:"",breathcat:""
   },  airquality: {noReport:false, date:"",ozoneactin: false, primarypolute:"", airqualityindex:""
   },  uvindex: {noReport:false, currentuv:{index:"",desc:""},forecast:[

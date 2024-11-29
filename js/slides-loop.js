@@ -59,54 +59,54 @@ var maindiv = {
 	"beach":".beach-slide",
 	"healthh":".health",
 	"travell":".travel",
-	"internationall":".international",
+	"internationall":".internacional",
 }
 
 var mainDivHeaders = {
-	"localDoppler":"Local Doppler Radar",
-	"regionalSatellite":"Radar/Satellite",
-	"bulletin":"",
+	"localDoppler":"Radar Doppler local",
+	"regionalSatellite":"Satelíte/Radar regional",
+	"bulletin":"Boletin",
 	//City Info
 	"cityIntro":"",
-	"currentConditions":"Currently",
-	"city8Slides":"Currently",
-	"dayPart":"*daytitle*",
-	"dayDesc":"Local Forecast",
-	"extendedForecast":"Extended Forecast",
-	"almanac":"Almanac",
+	"currentConditions":"Condiciones Actuales",
+	"city8Slides":"Condiciones Actuales",
+	"dayPart":"Próximas horas",
+	"dayDesc":"Tiempo local",
+	"extendedForecast":"Pronostico extendido",
+	"almanac":"Almanaque",
 	//Severe City Info
 	"severeCityIntro":"",
-	"severeMessage":"Severe Weather Message",
-	"severeCurrentConditions":"Currently",
-	"severeCity8Slides":"Currently",
-	"severeDayPart":"*daytitle*",
-	"severeDayDesc":"Local Forecast",
-	"severeExtendedForecast":"Extended Forecast",
-	"severeAlmanac":"Almanac",
-	//Airport
+	"severeMessage":"Mensaje de clima severo",
+	"severeCurrentConditions":"Actualmente",
+	"severeCity8Slides":"Actualmente",
+	"severeDayPart":"Proximas horas",
+	"severeDayDesc":"Pronóstico local",
+	"severeExtendedForecast":"Pronóstico extendido",
+	"severeAlmanac":"Almanaque",
+	//Aeropuerto
 	"airportIntro":"",
 	"airportConditions":"",
 	"otherAirportConds":"",
 	//Travel
 	"travelIntro":"",
 	"destinationForecast":"",
-	//International
+	//Internacional
 	"internationalIntro":"",
 	"internationalForecast":"",
 	//Beach
 	"beachIntro":"",
-	"beachConditions":"Surf Report",
-	"costalWatersAlerts":"Marine Forecast",
-	"costalWatersForecast":"Marine Forecast",
+	"beachConditions":"informe de surf",
+	"costalWatersAlerts":"Pronóstico marino",
+	"costalWatersForecast":"Pronóstico marino",
 	//Health
 	"healthIntro":"",
-	"healthForecast":"Outdoor Activity",
-	"pollen":"Allergy Report",
-	"achesBreath":"Health Forecast",
-	"airQuality":"Air Quality Forecast",
-	"uvIndex":"Ultraviolet Index",
-	"healthTip":"Weather Safety Tips",
-	"moreInfoImage":"*none*",
+	"healthForecast":"Actividad al aire libre",
+	"pollen":"Informe de alergia",
+	"achesBreath":"Pronostico de salud",
+	"airQuality":"Pronóstico de la calidad del aire",
+	"uvIndex":"Índice ultravioleta",
+	"healthTip":"Consejos de seguridad frente al clima",
+	"moreInfoImage":"*Satélite del Atlántico*",
 	//MainInfoSlides
 }
 var mainDivCityHeaders = {
@@ -116,7 +116,7 @@ var mainDivCityHeaders = {
 	//City Info
 	"cityIntro":"",
 	"currentConditions":"*currentConditionsLocation* *currentConditionsEnding*",
-	"city8Slides":"*none*",
+	"city8Slides":"Ubicaciones cerca de mi",
 	"dayPart":"*dayPartLocation* *dayPartEnding*",
 	"dayDesc":"*dayDescLocation* *dayDescEnding*",
 	"extendedForecast":"*extendedForecastLocation* *extendedForecastEnding*",
@@ -125,21 +125,21 @@ var mainDivCityHeaders = {
 	"severeCityIntro":"",
 	"severeMessage":"",
 	"severeCurrentConditions":"*currentConditionsLocation* *currentConditionsEnding*",
-	"severeCity8Slides":"*none*",
+	"severeCity8Slides":"*ninguna*",
 	"severeDayPart":"*dayPartLocation* *dayPartEnding*",
 	"severeDayDesc":"*dayDescLocation* *dayDescEnding*",
 	"severeExtendedForecast":"*extendedForecastLocation* *extendedForecastEnding*",
 	"severeAlmanac":"*almanacLocation* *almanacEnding*",
 	//Airport
 	"airportIntro":"",
-	"airportConditions":"*none*",
-	"otherAirportConds":"*none*",
+	"airportConditions":"Estado",
+	"otherAirportConds":"",
 	//Travel
 	"travelIntro":"",
-	"destinationForecast":"*none*",
+	"destinationForecast":"Próximos 3 dias",
 	//International
 	"internationalIntro":"",
-	"internationalForecast":"*none*",
+	"internationalForecast":"Próximos 3 dias",
 	//Beach
 	"beachIntro":"",
 	"beachConditions":"",
@@ -147,13 +147,13 @@ var mainDivCityHeaders = {
 	"costalWatersForecast":"",
 	//Health
 	"healthIntro":"",
-	"healthForecast":"*healthlocation*",
-	"pollen":"*healthlocation*",
-	"achesBreath":"*healthlocation*",
-	"airQuality":"*healthlocation*",
-	"uvIndex":"*healthlocation*",
-	"healthTip":"*healthlocation*",
-	"moreInfoImage":"*none*",
+	"healthForecast":"Hoy",
+	"pollen":"Informe de polen",
+	"achesBreath":"",
+	"airQuality":"Calidad del aire",
+	"uvIndex":"Indice de rayos UV",
+	"healthTip":"Prueba",
+	"moreInfoImage":"*Ninguno*",
 	//MainInfoSlides
 }
 var mainMap
@@ -270,7 +270,7 @@ var mainMap
 				,regionalSatellite() {
 					var locthing = (location == 0) ? maincitycoords : locList[location - 1]
 					var zoom = 4.5, maxloop = Math.ceil((slideDelay)*(11/60000)), lat = locthing.lat, lon = locthing.lon
-					$('.radar-slide .radar-legends .pastlegend').text('Past 5 Hours')
+					$('.radar-slide .radar-legends .pastlegend').text('Últimas 5 horas')
 					$('.radar-slide').fadeIn(0);
 					$('.radar-content').fadeIn(0);
 					fadeMap('satrad-1', true, zoom)
@@ -288,7 +288,7 @@ var mainMap
 						}
 						setTimeout( function() {
 							$('.radar-content').fadeOut(0);
-							$('.radar-slide .radar-legends .pastlegend').text('Past 3 Hours')
+							$('.radar-slide .radar-legends .pastlegend').text('Ultimas 3 horas')
 							wait(0)
 						}, 500)
 					}, slideDelay);
@@ -307,7 +307,7 @@ var mainMap
 					setTimeout(function() {
 						$('.city-slide-intro .weatherscancopyright .copyrighttext').fadeOut(500).promise().done(function(){
 							$('.city-slide-intro .weatherscancopyright .copyrighttext').css('font-size','15px')
-							$('.city-slide-intro .weatherscancopyright .copyrighttext').text(`© ${new Date().getFullYear()} All rights reserved to their rightful owners.`)
+							$('.city-slide-intro .weatherscancopyright .copyrighttext').text(`© ${new Date().getFullYear()} Todos los derechos reservados a sus legítimos propietarios..`)
 							$('.city-slide-intro .weatherscancopyright .copyrighttext').fadeIn(500);
 						});
 					}, 5000);
@@ -318,7 +318,7 @@ var mainMap
 						$('.city-slide-intro .cityweatherscanmarquee').fadeOut(500).promise().done(function(){
 							$('.city-slide-intro').fadeOut(0);
 							$('.city-slide-intro .weatherscancopyright .copyrighttext').css('font-size','28px')
-							$('.city-slide-intro .weatherscancopyright .copyrighttext').text("Weirderscan is brought to you by The PicelBoi Channel®<br> and Waddle Dee Communications. Find out more by going to https://github.com/PicelBoi/Weirderscan.")
+							$('.city-slide-intro .weatherscancopyright .copyrighttext').text("Weatherscan es presentado por IMESAT NEWS TV WEATHER® Y pinceboi. Obtenga más información visitando https://github.com/PicelBoi/Weirderscan.")
 							wait(0);
 						});
 					}, 10000);
@@ -709,7 +709,7 @@ var mainMap
 				//animate pollen bars
 				setTimeout(function () {
 					i = 0
-					var pollentypes = ['tree', 'grass', 'weed', 'mold'];
+					var pollentypes = ['Arbol', 'Hierba', 'Maleza', 'Moho'];
 					pollentypes.forEach(pollentype => {
 						var plength = {"0":"-10", "1":"55", "2":"115", "3":"175", "4":"235", "5":"295", "9":"-10"}[weatherInfo.healthPollen.types[i].pollenidx]
 						var ptime = {"0":0, "1":500, "2":1000, "3":1500, "4":2000, "5":2500, "9":0}[weatherInfo.healthPollen.types[i].pollenidx]
@@ -787,7 +787,7 @@ var mainMap
 						}
 					}*/
 					var aqlength = {1:"35", 2:"107.5", 3:"185", 4:"260", 5:"340"}[weatherInfo.airquality.airqualityindex]
-					var aqcat = {1:"green", 2:"yellow", 3:"orange", 4:"deep orange", 5:"red"}[weatherInfo.airquality.airqualityindex]
+					var aqcat = {1:"Naranja", 2:"Verde", 3:"Amarilla", 4:"deep orange", 5:"Roja"}[weatherInfo.airquality.airqualityindex]
 					var aqtime = {1:0, 2:500, 3:1000, 4:1500, 5:2000}[weatherInfo.airquality.airqualityindex]
 					$('.info-slide-content.airquality .airforecast .bar .arrow').css('bottom','35px');
 					$('.info-slide-content.airquality .airforecast .bar .forecast').fadeOut(0);
@@ -1730,7 +1730,7 @@ var mainMap
 					setTimeout( function() {
 						$('.radar-content').fadeOut(0);
 						$('.radar-slide').fadeOut(0);
-						$('.radar-slide .radar-legends .pastlegend').text('Past 3 Hours')
+						$('.radar-slide .radar-legends .pastlegend').text('Ultimas 3 horas')
 					}, 500)
 				}, time);
 			} else {
@@ -1813,13 +1813,13 @@ var mainMap
 			var divType = {
 				"severe-cities":'<span class="city severe" data-slide="severe" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>` + ((locIdxVal == 0) ? maincitycoords.displayname : locList[locIdxVal-1].displayname)+ '</span>',
 				"cities":'<span class="city" data-slide="city" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>` + ((locIdxVal == 0) ? maincitycoords.displayname : locList[locIdxVal-1].displayname)+ '</span>',
-				"radar":'<span class="city radar" data-slide="radar" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>LOCAL RADAR</span>`,
+				"radar":'<span class="city radar" data-slide="radar" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>RADAR LOCAL</span>`,
 				"golf":'<span class="city golf" data-slide="golf" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>GOLF</span>`,
-				"beach":'<span class="city beach" data-slide="beach" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>BOAT & BEACH</span>`,
-				"health":'<span class="city healthh" data-slide="healthh" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>HEALTH</span>`,
-				"airport":'<span class="city airport" data-slide="airport" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>AIRPORTS</span>`,
-				"travel":'<span class="city travell" data-slide="travell" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>TRAVEL</span>`,
-				"international":'<span class="city internationall" data-slide="internationall" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>INTERNATIONAL</span>`,
+				"beach":'<span class="city beach" data-slide="beach" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>BARCO Y PLAYA</span>`,
+				"health":'<span class="city healthh" data-slide="healthh" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>SALUD</span>`,
+				"airport":'<span class="city airport" data-slide="airport" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>AEROPUERTOS</span>`,
+				"travel":'<span class="city travell" data-slide="travell" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>VIAJAR</span>`,
+				"international":'<span class="city internationall" data-slide="internationall" data-divOrder="'+slideVal+ ((loopComplete == true) ? '" data-loopComplete="true"':'"')+' data-locIdx="'+locIdxVal+'" data-repeat="'+repeatVal+'" data-slideDelay="'+slideDelayVal+'"' + `data-slideOrder='${slideOrderVal}'>INTERNACIONAL</span>`,
 			}
 			return divType[divTypeVal];
 		}
