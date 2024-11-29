@@ -8,7 +8,7 @@
   <meta http-equiv='expires' content='0'> 
   <meta http-equiv='pragma' content='no-cache'>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <title>Weirderscan</title>
+  <title>Imesat News TV Weather</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 
@@ -276,235 +276,259 @@
     <div id="weathersettingspane" class="settingspane" style="display: none">
       <div id="pageleft" class="pagearrow">‹</div>
       <div id="pageright" class="pagearrow">›</div>
-      <div id="weathertitle" class="settingspanetitle">Weather Data Settings</div>
+      <div id="weathertitle" class="settingspanetitle">Configuración de datos meteorológicos</div>
 
       <div id="currentconditionspage" class="weathersettingspage" style="display: ">
-      <div id="currenttile" class="weathersettingspagetitle">Current Conditions Slide</div>
+      <div id="currenttile" class="weathersettingspagetitle">Diapositiva de condiciones actuales</div>
       <div class=setlocname>
-        <label for="8 cities">Current Location Name</label>
+        <label for="8 cities">Nombre de la ubicación actual</label>
         <input type="text" id="currentlocname" name="fname"><br><br>
       </div>
       <div class=selectloc>
-        <label for="8 cities">Selected Location</label>
+        <label for="8 cities">Seleccionar ubicación</label>
         <select name="citybackground" id="citybackground">
           <option value="city">city</option>
         </select>
       </div>
       <script>
       const bg = document.querySelector('body');
-      var video = document.getElementById('videobg');
-      var source = document.createElement('source');
+var video = document.getElementById('videobg');
+var source = document.createElement('source');
 
-      var indexbg = Math.floor(Math.random() * (35- 1)+ 1);
-      source.setAttribute('src', 'https://raw.githubusercontent.com/PicelBoi/Weirderscan/assets/backgrounds/' + indexbg.toString() + '.bg');
-      source.setAttribute('type', 'video/mp4');
-      video.play();
-      video.load();
-      console.log({
-          src: source.getAttribute('src'),
-          type: source.getAttribute('type'),
-      });
-      video.appendChild(source);
-      bg.style.cssText = ('background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("https://raw.githubusercontent.com/PicelBoi/Weirderscan/assets/backgrounds/' + indexbg.toString() + '.bg"); background-size: cover; background-position: center; '); 
+// Array de URLs
+var urls = [
+    'https://picsum.photos/1920/1080/?random1.bg',
+    'https://picsum.photos/1920/1080/?random2.bg',
+    'https://picsum.photos/1920/1080/?random3.bg',
+    'https://cdn.pixabay.com/video/2022/09/08/130598-747868259_large.mp4',
+    'https://cdn.pixabay.com/video/2023/02/13/150531-798555662_tiny.mp4',
+    'https://cdn.pixabay.com/video/2024/07/04/219415_large.mp4',
+    'https://cdn.pixabay.com/video/2017/07/17/10715-226624864_large.mp4',
+    'https://cdn.pixabay.com/video/2021/09/21/89183-613200472_large.mp4',
+    'https://cdn.pixabay.com/video/2023/02/21/151629-801075780_tiny.mp4'
+];
+
+function updateBackground() {
+    // Selecciona una URL aleatoria del array
+    var randomUrl = urls[Math.floor(Math.random() * urls.length)];
+    source.setAttribute('src', randomUrl);
+    source.setAttribute('type', 'video/mp4');
+    video.play();
+    video.load();
+    console.log({
+        src: source.getAttribute('src'),
+        type: source.getAttribute('type'),
+    });
+    video.appendChild(source);
+    bg.style.cssText = ('background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("' + randomUrl + '"); background-size: cover; background-position: center; ');
+}
+
+// Actualiza el fondo inmediatamente al cargar la página
+updateBackground();
+
+// Luego actualiza el fondo cada 90 segundos
+setInterval(updateBackground, 90000);
+
+
       
       </script>
       <form action="/action_page.php">
       <div class=textfield>
-        <label for="cc">Current Temperature</label>
+        <label for="cc">Temperatura actual</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Conditions</label>
+        <label for="cc">Condiciones actuales</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Icons</label>
+        <label for="cc">Iconos actuales</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Humidity</label>
+        <label for="cc">Humedad actual</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Dew Point</label>
+        <label for="cc">Punto de rocío actual</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Pressure</label>
+        <label for="cc">Presión actual</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Pressure Rising/Falling</label>
+        <label for="cc">Presión ascendente/descendente</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Wind</label>
+        <label for="cc">Viento actual</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       <div class=textfield>
-        <label for="cc">Current Wind</label>
+        <label for="cc">Viento actual</label>
         <input type="text" id="fname" name="currentCond"><br><br>
       </div>
       </form>
     </div>
     <div id="daypartpage" class="settingspage" style="display: none">
-      <div id="currenttile" class="weathersettingspagetitle">Daypart Slide</div>
+      <div id="currenttile" class="weathersettingspagetitle">Diapositiva de franja horaria</div>
       <div class=setlocname>
-        <label for="8 cities">Hour Location Name</label>
+        <label for="8 cities">Hora Ubicación Nombre</label>
         <input type="text" id="hourlocnamei" name="fname"><br><br>
       </div>
-    <div id="hour1" class="hour"> <div class="sethourtitle">Hour 1</div>
+    <div id="hour1" class="hour"> <div class="sethourtitle"> 1 Hora</div>
       <div class=textfield>
-        <label for="8 cities">Hour Time</label>
+        <label for="8 cities">Hora tiempo</label>
         <input type="text" id="hourtimei" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Condition</label>
+        <label for="8 cities">Condición de hora</label>
         <input type="text" id="hourcondi" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Icon</label>
+        <label for="8 cities">Icono de hora</label>
         <input type="text" id="houriconi" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Temperatue</label>
+        <label for="8 cities">Hora Temperatura</label>
         <input type="text" id="hourtempi" name="fname"><br><br>
       </div>
     </div>
-    <div id="hour2" class="hour"> <div class="sethourtitle">Hour 2</div>
+    <div id="hour2" class="hour"> <div class="sethourtitle">Hora 2</div>
       <div class=textfield>
-        <label for="8 cities">Hour Time</label>
+        <label for="8 cities">Hora tiempo</label>
         <input type="text" id="hourtimeii" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Condition</label>
+        <label for="8 cities">Condición de hora</label>
         <input type="text" id="hourcondii" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Icon</label>
+        <label for="8 cities">Icono de hora</label>
         <input type="text" id="houriconii" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Temperatue</label>
+        <label for="8 cities">Hora Temperatura</label>
         <input type="text" id="hourtempii" name="fname"><br><br>
       </div>
     </div>
-    <div id="hour3" class="hour"> <div class="sethourtitle">Hour 3</div>
+    <div id="hour3" class="hour"> <div class="sethourtitle">3 Horas</div>
       <div class=textfield>
-        <label for="8 cities">Hour Time</label>
+        <label for="8 cities">Hora tiempo</label>
         <input type="text" id="hourtimeiii" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Condition</label>
+        <label for="8 cities">Condición de hora</label>
         <input type="text" id="hourcondiii" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Icon</label>
+        <label for="8 cities">Icono de hora</label>
         <input type="text" id="houriconiii" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Temperatue</label>
+        <label for="8 cities">Hora Temperatura</label>
         <input type="text" id="hourtempiii" name="fname"><br><br>
       </div>
     </div>
-    <div id="hour4" class="hour"> <div class="sethourtitle">Hour 4</div>
+    <div id="hour4" class="hour"> <div class="sethourtitle"> 4 Horas</div>
       <div class=textfield>
-        <label for="8 cities">Hour Time</label>
+        <label for="8 cities">Hora Tiempo</label>
         <input type="text" id="hourtimeiv" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Condition</label>
+        <label for="8 cities">Condición de hora</label>
         <input type="text" id="hourcondiv" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Icon</label>
+        <label for="8 cities">Icono de hora</label>
         <input type="text" id="houriconiv" name="fname"><br><br>
       </div>
       <div class=textfield>
-        <label for="8 cities">Hour Temperatue</label>
+        <label for="8 cities">Hora Temperatura</label>
         <input type="text" id="hourtempiv" name="fname"><br><br>
       </div>
     </div>
     </div>
     <div id="daypartpage" class="settingspage" style="display: none">
       <form action="/action_page.php">
-        <label for="8 cities">36-Hour Day</label>
+        <label for="8 cities">Día 36 horas</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">36-Hour Forecast</label>
+        <label for="8 cities">Previsión de 36 horas</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">36-Hour Location Name</label>
+        <label for="8 cities">Nombre de la ubicación de 36 horas</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
     </div>
     <div id="5day" class="settingspage" style="display: none">
       <form action="/action_page.php">
-        <label for="8 cities">5-Day Location Name</label>
+        <label for="8 cities">Nombre de la ubicación de 5 días</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">5-Day Name</label>
+        <label for="8 cities">Nombre de 5 días</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">5-Day Condition</label>
+        <label for="8 cities">Condición de 5 días</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">5-Day Icon</label>
+        <label for="8 cities">Icono de 5 días</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">5-Day High</label>
+        <label for="8 cities">Máximo de 5 días</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">5-Day Low</label>
+        <label for="8 cities">Mínimo de 5 días</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
     </div>
     <div id="alamanac" class="settingspage" style="display: none">
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Date</label>
+        <label for="8 cities">Fecha del almanaque</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Average High</label>
+        <label for="8 cities">Almanaque Promedio Alto</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Average Low</label>
+        <label for="8 cities">Almanaque Promedio Bajo</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Record High</label>
+        <label for="8 cities">Récord de almanaque</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Record Low</label>
+        <label for="8 cities">Mínimo récord del almanaque</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Sunrise</label>
+        <label for="8 cities">Amanecer del almanaque</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac Sunset</label>
+        <label for="8 cities">Atardecer del almanaque</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac MoonPhase</label>
+        <label for="8 cities">Almanaque Fase Lunar</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac MoonPhase Icon</label>
+        <label for="8 cities">Icono de fase lunar de almanaque</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
       <form action="/action_page.php">
-        <label for="8 cities">Almanac MoonPhase Date</label>
+        <label for="8 cities">Almanaque Fase Lunar Fecha</label>
         <input type="text" id="fname" name="fname"><br><br>
       </form>
     </div>
@@ -529,17 +553,20 @@
       <div class="gradientthing"></div>
     </div>
     <div id="severe-header-weathermessage" class="info-slides-header" style="display:none;">
-      <div class="hscroller">SEVERE WEATHER UPDATE</div><!--<span class="city radar current">LOCAL RADAR</span> -->
+      <div class="hscroller">ACTUALIZACIÓN DE CLIMA SEVERO</div><!--<span class="city radar current">LOCAL RADAR</span> -->
       <div class="gradientthing"></div>
     </div>
 
     <div id='info-slide-container'>
 
 
+
+
+
       <!-- CURRENT CONDITIONS AND FORECAST-->
       <div class="info-slide bulletin" style="display: none">
         <div class="info-subheader">
-          <span id="subhead-titlei">Alerts</span><span id="subhead-noaa" style="display:">FROM THE NATIONAL WEATHER SERVICE</span>
+          <span id="subhead-titlei">Alertas</span><span id="subhead-noaa" style="display:">FROM THE NATIONAL WEATHER SERVICE</span>
         </div>
         <div class='frost-pane' style="display:None">
           <div class='cityname'>Frankfort Area</div>
@@ -561,8 +588,8 @@
         <div class="info-subheadershadowfix">
           <span class="subhead-title"></span>
         </div>
-        <div class='noreport' style="display: none">No Report</div>
-        <div class='tempunavailable' style="display: none">Temporarily Unavailable</div>
+        <div class='noreport' style="display: none">No hay reporte</div>
+        <div class='tempunavailable' style="display: none">Temporalmente no disponible</div>
 
         <div class='info-slide-content severe-forecast' style="display:none">
           <div class='frost-pane'>
@@ -573,7 +600,7 @@
 
         <div class='info-slide-content severe-weatherstatement' style="display: none">
           <div class='frost-pane'>
-            <div class='statement'>Weirderscan  brings you this special programming because of severe weather in your area.</div>
+            <div class='statement'>Imesat News TV weather te trae esta programación especial debido al clima severo en tu área.</div>
           </div>
         </div>
 
@@ -597,7 +624,7 @@
                 <div class='thingtext'>2pm</div>
               </div>
               <div class='icon'></div>
-              <div class='condition'>rain</div>
+              <div class='condition'>Lluvia</div>
               <div class='tempbar'>
                 <div class='temp'>79</div>
                 <div class='wind'>NNE 12</div>
@@ -645,15 +672,15 @@
         <div class='info-slide-content severe-extended-forecast' style="display: none">
           <div class='thingg'>
             <div class='thingbg'></div>
-            <div class='thingday iw'>Mon</div>
-            <div class='thingday iiw'>Tue</div>
-            <div class='thingday iiiw'>Wed</div>
-            <div class='thingday ivw'>Thu</div>
-            <div class='thingday vw'>Fri</div>
+            <div class='thingday iw'>Lun</div>
+            <div class='thingday iiw'>Mar</div>
+            <div class='thingday iiiw'>Mie</div>
+            <div class='thingday ivw'>Jue</div>
+            <div class='thingday vw'>Vie</div>
           </div>
           <div class='frost-pane iw'>
             <div class='icon'></div>
-            <div class='conditions'>Sct'd<br> T'storms</div>
+            <div class='conditions'>Sct'd<br> tormentas</div>
             <div class='temphigh'><span></span></div>
             <div class='templow'>74</div>
           </div>
@@ -697,42 +724,42 @@
         <div class='info-slide-content severe-almanac' style="display:none">
           <div class='thing'><div class='thingbg'></div><div class='thingtext'>Jul 26</div></div>
           <div class='frost-pane half'>
-            <div class='averagetitle'>Average</div>
-            <div class='recordtitle'>Record</div>
-            <div class='ahigh'>High</div>
+            <div class='averagetitle'>Promedio</div>
+            <div class='recordtitle'>Registro</div>
+            <div class='ahigh'>Alta</div>
             <div class='ahightext'>90</div>
-            <div class='alow'>Low</div>
+            <div class='alow'>Baja</div>
             <div class='alowtext'>70</div>
-            <div class='rhigh'>High</div>
+            <div class='rhigh'>Alta</div>
             <div class='rhightext'>98</div>
-            <div class='rlow'>Low</div>
+            <div class='rlow'>Bajo</div>
             <div class='rlowtext'>54</div>
             <div class='rhighyear'>1987</div>
             <div class='rlowyear'>1999</div>
           </div>
           <div class='frost-pane purple'>
             <div class='icon'></div>
-            <div class='sunrisetitle'>Sunrise</div>
-            <div class='sunsettitle'>Sunset</div>
+            <div class='sunrisetitle'>Amanecer</div>
+            <div class='sunsettitle'>Atardecer</div>
             <div class='sunrisetext'>7:02 am</div>
             <div class='sunsettext'>8:37</div>
             <div class='phase i'>
-              <div class ='phasetext'>NEW</div>
+              <div class ='phasetext'>Nueva</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 3</div>
             </div>
             <div class='phase ii'>
-              <div class ='phasetext'>FIRST</div>
+              <div class ='phasetext'>Primera</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 11</div>
             </div>
             <div class='phase iii'>
-              <div class ='phasetext'>FULL</div>
+              <div class ='phasetext'>LLENA</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 18</div>
             </div>
             <div class='phase iv'>
-              <div class ='phasetext'>LAST</div>
+              <div class ='phasetext'>última</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 25</div>
             </div>
@@ -775,8 +802,8 @@
           <span class="subhead-title"></span>
         </div>
 
-        <div class='noreport' style="display: none">No Report</div>
-        <div class='tempunavailable' style="display: none">Temporarily Unavailable</div>
+        <div class='noreport' style="display: none">No hay Reporte</div>
+        <div class='tempunavailable' style="display: none">Temporalmente no disponible</div>
         <div class='info-slide-content city-info' style="display:">
           <div class='frost-pane left'>
             <div class='labels'></div>
@@ -803,8 +830,8 @@
         <div class="info-subheadershadowfix">
           <span class="subhead-title"></span>
         </div>
-        <div class='noreport' style="display: none">No Report</div>
-        <div class='tempunavailable' style="display: none">Temporarily Unavailable</div>
+        <div class='noreport' style="display: none">No hay Reporte</div>
+        <div class='tempunavailable' style="display: none">Temporalmente no disponible</div>
 
         <div class='info-slide-content forecast' style="display:none">
           <div class='frost-pane'>
@@ -833,7 +860,7 @@
                 <div class='thingtext'>2pm</div>
               </div>
               <div class='icon'></div>
-              <div class='condition'>rain</div>
+              <div class='condition'>Lluvia</div>
               <div class='tempbar'>
                 <div class='temp'>79</div>
                 <div class='wind'>NNE 12</div>
@@ -881,15 +908,15 @@
         <div class='info-slide-content extended-forecast' style="display:none">
           <div class='thingg'>
             <div class='thingbg'></div>
-            <div class='thingday iw'>Mon</div>
-            <div class='thingday iiw'>Tue</div>
-            <div class='thingday iiiw'>Wed</div>
-            <div class='thingday ivw'>Thu</div>
-            <div class='thingday vw'>Fri</div>
+            <div class='thingday iw'>Lun</div>
+            <div class='thingday iiw'>Mar</div>
+            <div class='thingday iiiw'>Mie</div>
+            <div class='thingday ivw'>Jue</div>
+            <div class='thingday vw'>Vie</div>
           </div>
           <div class='frost-pane iw'>
             <div class='icon'></div>
-            <div class='conditions'>Sct'd<br> T'storms</div>
+            <div class='conditions'>Sct'd<br> Tormentas</div>
             <div class='temphigh'><span>87</span></div>
             <div class='templow'>74</div>
           </div>
@@ -933,42 +960,42 @@
         <div class='info-slide-content almanac' style="display:none">
           <div class='thing'><div class='thingbg'></div><div class='thingtext'>Jul 26</div></div>
           <div class='frost-pane half'>
-            <div class='averagetitle'>Average</div>
-            <div class='recordtitle'>Record</div>
-            <div class='ahigh'>High</div>
+            <div class='averagetitle'>Promedio</div>
+            <div class='recordtitle'>Registro</div>
+            <div class='ahigh'>Alto</div>
             <div class='ahightext'>90</div>
-            <div class='alow'>Low</div>
+            <div class='alow'>bajo</div>
             <div class='alowtext'>70</div>
-            <div class='rhigh'>High</div>
+            <div class='rhigh'>Alto</div>
             <div class='rhightext'>98</div>
-            <div class='rlow'>Low</div>
+            <div class='rlow'>Bajo</div>
             <div class='rlowtext'>54</div>
             <div class='rhighyear'>1987</div>
             <div class='rlowyear'>1999</div>
           </div>
           <div class='frost-pane purple'>
             <div class='icon'></div>
-            <div class='sunrisetitle'>Sunrise</div>
-            <div class='sunsettitle'>Sunset</div>
+            <div class='sunrisetitle'>Amanecer</div>
+            <div class='sunsettitle'>Atardecer</div>
             <div class='sunrisetext'>7:02 am</div>
             <div class='sunsettext'>8:37</div>
             <div class='phase i'>
-              <div class ='phasetext'>NEW</div>
+              <div class ='phasetext'>Nueva</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 3</div>
             </div>
             <div class='phase ii'>
-              <div class ='phasetext'>FIRST</div>
+              <div class ='phasetext'>Primera</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 11</div>
             </div>
             <div class='phase iii'>
-              <div class ='phasetext'>FULL</div>
+              <div class ='phasetext'>Llena</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 18</div>
             </div>
             <div class='phase iv'>
-              <div class ='phasetext'>LAST</div>
+              <div class ='phasetext'>Ultima</div>
               <div class ='icon'></div>
               <div class ='date'>Aug 25</div>
             </div>
@@ -1008,14 +1035,16 @@
       <div class="info-slide radar-slide" style="display: none">
         <div class="radar-overlay"></div>
         <div class="info-subheader">
-          <span class='subhead-title'>Local Doppler Radar</span>
+          <span class='subhead-title'>Radar Doppler Local</span>
           <div class="radar-legends">
-            <span class="radar-color-legend" style="display: none"><div class="pastlegend">Past 3 Hours</div>Light <img src="images/precip-legend.png" alt="Past 3 Hours"/> Heavy</span>
-            <span class="radar-color-legend-winter" style="display: none"><div class="pastlegend">Past 3 Hours</div>Rain <img class="rainlonger" src="images/precip-legend.png" alt="Past 3 Hours"/>&nbsp;Mix ;<img src="images/precip-legend-mix.png" alt="Past 3 Hours"/>&nbsp;Snow <img src="images/precip-legend-snow.png" alt="Past 3 Hours"/></span>
+            <span class="radar-color-legend" style="display: none"><div class="pastlegend">Últimas 3 horas</div>Ligera <img src="images/precip-legend.png" alt="Past 3 Hours"/> Pesado</span>
+  
+            <span class="radar-color-legend-winter" style="display: none"><div class="pastlegend">Últimas 3 horas</div>Lluvia <img class="rainlonger" src="images/precip-legend.png" alt="Past 3 Hours"/>&nbsp;mezcla ;<img src="images/precip-legend-mix.png" alt="Past 3 Hours"/>&nbsp;Nieve <img src="images/precip-legend-snow.png" alt="Past 3 Hours"/></span>
+            
           </div>
         </div>
         <div id="radar-container" class="info-slide-content radar-content" style="">
-          <div class='tempunavailable' style="display: none">Temporarily Unavailable</div>
+          <div class='tempunavailable' style="display: none">Temporalmente no disponible</div>
           <div class='mapcon'>
             <div id="radar-1" class="map"></div>
             <div id="radar-2" class="map"></div>
@@ -1025,62 +1054,67 @@
         </div>
       </div>
 
+
+
+
+    
+
       <!-- Intros -->
       <div class="info-slide city-slide-intro" style="display:none">
-        <div class="weatherscancopyright" style="display:none"> <span class="copyrighttext"> Weirderscan is brought to you by The PicelBoi Channel®<br> and Waddle Dee Communications. Find out more by going to https://github.com/PicelBoi/Weirderscan. </span></div>
+        <div class="weatherscancopyright" style="display:none"> <span class="copyrighttext"> Weatherscan es presentado por Imesat News TV Weather. Tu canal de información meteorologica. </span></div>
         
-        <div class='cityweatherscanmarquee' style="display:none"><span>weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</span></div>
-        <div class='segment' style="display:none">Airport Conditions</div>
+        <div class='cityweatherscanmarquee' style="display:none"><span></span></div>
+        <div class='segment' style="display:none">Condiciones del aeropuerto</div>
       </div>
       <div class="info-slide airport-slide-intro" style="display:none">
       
-        <div class='weatherscanmarquee' style="display:none"><span>weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</span></div>
-        <div class='segment' style="display:none">Airport Conditions</div>
+        <div class='weatherscanmarquee' style="display:none"><span>Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather </span></div>
+        <div class='segment' style="display:none">Condiciones del aeropuerto</div>
       </div>
       <div class="info-slide beach-slide-intro" style="display: none">
         
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
-        <div class='segment' style="display:none">Boat & Beach</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
+        <div class='segment' style="display:none">Barco y playa</div>
       </div>
       <div class="info-slide golf-slide-intro" style="display: none">
         
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
         <div class='segment' style="display:none">Golf</div>
       </div>
       <div class="info-slide garden-slide-intro" style="display: none">
       
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
-        <div class='segment' style="display:none">Garden</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
+        <div class='segment' style="display:none">Jardin</div>
       </div>
       <div class="info-slide ski-slide-intro" style="display: none">
         
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
-        <div class='segment' style="display:none">Ski & Snow</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
+        <div class='segment' style="display:none">Esquí y nieve</div>
       </div>
       <div class="info-slide travel-slide-intro" style="display: none">
         
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
-        <div class='segment' style="display:none">Travel Forecasts</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
+        <div class='segment' style="display:none">Previsiones de viaje</div>
       </div>
       <div class="info-slide international-slide-intro" style="display: none">
         
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
-        <div class='segment' style="display:none">International Forecasts</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
+        <div class='segment' style="display:none">Previsiones internacionales</div>
       </div>
       <div class="info-slide health-slide-intro" style="display:none">
         
-        <div class='weatherscanmarquee' style="display:none">weirderscan   weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan weirderscan wweirderscan</div>
-        <div class='segment' style="display:none">Weather & Your Health</div>
+        <div class='weatherscanmarquee' style="display:none">Imesat News TV Weather   Imesat News TV Weather     Imesat News TV Weather   Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather  Imesat News TV Weather    Imesat News TV Weather    Imesat News TV Weather   Imesat News TV Weather</div>
+        <div class='segment' style="display:none">El clima y su salud</div>
       </div>
       <!-- AIRPORT -->
       <div class="info-slide airport-slide" style="display: none">
         <div class="info-subheader">
-          <span class="subhead-titlei"></span><span id="subhead-city"></span><span id='subhead-source' style='display:none'>Source: flightaware.com</span>
+          <span class="subhead-titlei"></span><span id="subhead-city"></span><span id='subhead-source' style='display:none'>Fuente: flightaware.com</span>
         </div>
         <div class="info-subheadershadowfix">
-          <span class="subhead-title">Current Airport Conditions</span>
+          <span class="subhead-title">Condiciones actuales del aeropuerto</span>
         </div>
-        <div class='nodata' style="display: none">Data Not Available</div>
+        <div class='nodata' style="display: none">Informacion no disponible</div>
       <div class='info-slide-content airportpanel' style="display: none">
         <div class='thing'>
           <div class='thingbg'></div>
@@ -1088,19 +1122,19 @@
         </div>
       <div class='leftpanel'>
         <div class='frost-pane top'>
-          <div class='title'>Arrivals</div>
-          <div class='delay'>DELAY</div>
-          <div class='delayfill'>No Delay</div>
-          <div class='reason'>REASON</div>
+          <div class='title'>Llegadas</div>
+          <div class='delay'>Demora</div>
+          <div class='delayfill'>Sin demora</div>
+          <div class='reason'>Razón</div>
           <div class='reasonfill'></div>
         </div>
         <div class='frost-pane bottom'>
-          <div class='title'>Departures</div>
-          <div class='delay'>DELAY</div>
-          <div class='delayfill'>No Delay</div>
-          <div class='reason'>REASON</div>
+          <div class='title'>Salidas</div>
+          <div class='delay'>Demora</div>
+          <div class='delayfill'>Sin demora</div>
+          <div class='reason'>Razón</div>
           <div class='reasonfill'></div>
-          <div class='source'>Source: FAA</div>
+          <div class='source'>Fuente: FAA</div>
         </div>
       </div>
       <div class='frost-pane right'>
@@ -1114,11 +1148,11 @@
           <div class='thingbg'></div>
           <div class='thingtext'>
             <span class='temp'>TEMP</span>
-            <span class='delay'>DELAY</span>
+            <span class='delay'>DEMORA</span>
           </div>
         </div>
         <div class='frost-pane'>
-        <div class='source'>Source: FAA</div>
+        <div class='source'>Fuente: FAA</div>
         <div class="airport i">
           <div class="airportname"></div>
           <div class="temp"></div>
@@ -1153,16 +1187,16 @@
         <span id="subhead-titlei"></span><span id="subhead-city"></span>
       </div>
       <div class="info-subheadershadowfix">
-        <span class="subhead-title">Current Surf Report</span>
+        <span class="subhead-title">Informe de surf actual</span>
       </div>
     <div class='info-slide-content surfreport' style="display: none">
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'>St Augustine Pier</div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Muelle de San Agustín</div></div>
       <div class='frost-pane left'>
-        <div class='title wind'>Wind</div>
-        <div class='title waveperiod'>Wave Period</div>
+        <div class='title wind'>Viento</div>
+        <div class='title waveperiod'>Período de ola</div>
         <div class='windvalue'>E 10 mph</div>
-        <div class='waveperiodvalue'>5 seconds</div>
-        <div class='title watertemp'>Surface Water Temperature</div>
+        <div class='waveperiodvalue'>5 segundos</div>
+        <div class='title watertemp'>Temperatura del agua superficial</div>
         <div class='watertempbar'><div class='temps'>30 40 50 60 70 80 90</div>
           <div class='temparrow'>
             <div class='temp'>80</div>
@@ -1170,7 +1204,7 @@
         </div>
       </div>
       <div class='frost-pane right'>
-        <div class='title waveheight'>Average Wave Height</div>
+        <div class='title waveheight'>Altura promedio de las olas</div>
         <div class='wavebar'>
           <div class='wavevalue'>5</div>
           <div class='feet'>feet</div>
@@ -1178,28 +1212,28 @@
       </div>
     </div>
     <div class='info-slide-content coastalwaters warnings' style="display:none">
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'>FROM THE NATIONAL WEATHER SERVICE</div></div>
-      <div class='frost-pane content'><div class='warningtext'>Small craft should exercise caution until 2 AM EDT
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'>DEL SERVICIO METEOROLÓGICO NACIONAL</div></div>
+      <div class='frost-pane content'><div class='warningtext'>Las embarcaciones pequeñas deben tener precaución hasta las 2 a. m. EDT
       <br></br>
-      Small Craft Advisory in effect from 2 AM EDT Monday through Monday evening.</div></div>
+      Aviso sobre embarcaciones pequeñas vigente desde las 2 a. m. EDT de lunes a lunes por la noche.</div></div>
     </div>
     <div class='info-slide-content coastalwaters forecasts' style="display: none">
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'>FROM THE NATIONAL WEATHER SERVICE</div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'>DEL SERVICIO METEOROLÓGICO NACIONAL</div></div>
       <div class='frost-pane content'>
-        <div class='title day'>Tonight</div>
-        <div class='forecasttext'>E winds 15 to 20 kt. Seas 3 to 5 ft with occasional seas 6 ft</div>
-        <div class='title day'>Sunday</div>
-        <div class='forecasttext'>E winds 15 to 20 kt. Seas 3 to 5 ft with occasional seas 6 ft</div>
+        <div class='title day'>Esta noche</div>
+        <div class='forecasttext'>Vientos del E de 15 a 20 kt. Marejada de 3 a 5 pies con marejada ocasional de 6 pies</div>
+        <div class='title day'>Domingo</div>
+        <div class='forecasttext'>Vientos del E de 15 a 20 kt. Marejada de 3 a 5 pies con marejada ocasional de 6 pies</div>
       </div>
 
     </div>
     <div class='info-slide-content tides' style="display: none">
       <div class='thingnotpurple'>
-        <span class='hightide'>HIGH TIDE</span>
-        <span class='lowtide'>LOW TIDE</span>
+        <span class='hightide'>LA MAREA ALTA</span>
+        <span class='lowtide'>MAREA BAJA</span>
       </div>
       <div class='frost-pane top'>
-        <div class='place'>Boca Raton, Lake Boca Raton</div>
+        <div class='place'>Boca Ratón, Lago Boca Ratón</div>
         <div class='hightide'>
           12:39 am Mon </br>
           12:50 pm Mon
@@ -1210,7 +1244,7 @@
         </div>
       </div>
       <div class='frost-pane mid'>
-        <div class='place'>St Augustine Beach</div>
+        <div class='place'>Playa de San Agustín</div>
         <div class='hightide'>
           1:38 am Mon </br>
           1:49 pm Mon
@@ -1221,9 +1255,9 @@
         </div>
       </div>
       <div class='frost-pane bottom'>
-        <div class='place'>St Augustine Beach</div>
-        <div class='title sunrise'>Sunrise</div>
-        <div class='title sunset'>Sunset</div>
+        <div class='place'>Playa de San Agustín</div>
+        <div class='title sunrise'>Amanecer</div>
+        <div class='title sunset'>Atardecer</div>
         <div class='sunrisetext'>11:00 am</div>
         <div class='sunsettext'> 11:59 pm</div>
       </div>
@@ -1235,24 +1269,24 @@
       <span id="subhead-titlei"></span><span id="subhead-city"></span>
     </div>
     <div class="info-subheadershadowfix">
-      <span class="subhead-title">Health Forecast</span>
+      <span class="subhead-title">Pronóstico de salud</span>
     </div>
-    <div class='tempunavailable' style="display: none">Temporarily Unavailable</div>
+    <div class='tempunavailable' style="display: none">Temporalmente no disponible</div>
 
     <div class='info-slide-content health-forecast' style="display: none">
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Forecast for Thursday</div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Pronóstico para el jueves</div></div>
       <div class='frost-pane mainforecast'>
         <div class='icon'></div>
-        <div class='low'>Low</div>
-        <div class='high'>High</div>
+        <div class='low'>bajo</div>
+        <div class='high'>Alto</div>
         <div class='lowtext'>53</div>
         <div class='hightext'>76</div>
-        <div class='title heatwind'>Heat Index‏‏‎ ‎‏‏‎ ‎ 78</div>
+        <div class='title heatwind'>Índice de calor‏‏‎ ‎‏‏‎ ‎ 78</div>
       </div>
       <div class='frost-pane forecastdetails'>
-        <div class='title chanceprecip'><span>Chance of Precipitation</span></div>
-        <div class='title humid'><span>Humidity</span></div>
-        <div class='title wind'><span>Wind</span></div>
+        <div class='title chanceprecip'><span>Posibilidad de presipitacion</span></div>
+        <div class='title humid'><span>Humedad</span></div>
+        <div class='title wind'><span>Viento</span></div>
         <div class='chancepreciptext'>10%</div>
         <div class='humidtext'>59%</div>
         <div class='windtext'>SE 6</div>
@@ -1260,94 +1294,94 @@
     </div>
     <div class='info-slide-content allergy' style="display: none">
       <div class='leftpanel'>
-        <div class='thing'><div class='thingbg'></div><div class='thingtext'>AS of Aug 7</div></div>
+        <div class='thing'><div class='thingbg'></div><div class='thingtext'>A partir del 7 de agosto</div></div>
       <div class='frost-pane pollen'>
         <div class='pollenbar tree'>
           <div class='bar'>
             <div class='bararrow'>
             </div>
           </div>
-          <div class='type'>Tree Pollen</div><div class='treetype'>Oak</div>
+          <div class='type'>Polen de arbol</div><div class='treetype'>Roble</div>
         </div>
         <div class='pollenbar grass'>
           <div class='bar'>
             <div class='bararrow'>
             </div>
           </div>
-          <div class='type'>Grass Pollen</div>
+          <div class='type'>Polen del cesped</div>
         </div>
         <div class='pollenbar weed'>
           <div class='bar'>
             <div class='bararrow'>
             </div>
           </div>
-          <div class='type'>Weed Pollen</div>
+          <div class='type'>Polen de malezas</div>
         </div>
         <div class='pollenbar mold'>
           <div class='bar'>
             <div class='bararrow'></div>
           </div>
-          <div class='type'>Mold Spores</div>
+          <div class='type'>Esporas de moho</div>
         </div>
-        <div class='scale low'>None</div>
-        <div class='scale high'>Very High</div>
+        <div class='scale low'>ninguna</div>
+        <div class='scale high'>Muy alto</div>
       </div>
     </div>
     <div class='rightpanel'>
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Total <br> Pollen Count</div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Total <br> Nivel de polen</div></div>
       <div class='frost-pane totalpollen'>
         <div class='cat'>9</div>
-        <div class='desc'>Low</div>
-        <div class='moreinfo' style='display: none'>More allergy<br> information at<br> weather.com/<br>health</div>
+        <div class='desc'>bajo</div>
+        <div class='moreinfo' style='display: none'>Más alergia<br> información en<br> weather.com/<br>salud</div>
       </div>
     </div>
   </div>
     <div class='info-slide-content Aches-Breath' style="display: none">
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Thursday</div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'>Jueves</div></div>
       <div class='frost-pane aches'>
         <div class='frost-panebg'></div>
-        <div class='whitetitle aches'>Aches and Pains Index</div>
-        <div class='desc aches'>Potential for feeling aches and pains based on weather conditions.</div>
+        <div class='whitetitle aches'>Índice de dolores y molestias</div>
+        <div class='desc aches'>Potencial de sentir dolores y molestias según las condiciones climáticas..</div>
         <div class='bar'>
           <div class='bararrow'>
-            <div class='bararrowtext' style='display:none'>Low</div>
+            <div class='bararrowtext' style='display:none'>Bajo</div>
           </div>
         </div>
       </div>
       <div class='frost-pane breath'>
         <div class='frost-panebg'></div>
-        <div class='whitetitle breath'>Respiratory Index</div>
-        <div class='desc breath'>Weather's influence on breathing conditions, excluding pollen or<br>‏‏‎ ‎air quality.</div>
+        <div class='whitetitle breath'>Índice respiratorio</div>
+        <div class='desc breath'>La influencia del clima en las condiciones respiratorias, excluyendo el polen o<br>‏‏‎ ‎calidad del aire.</div>
         <div class='bar'>
           <div class='bararrow'>
-            <div class='bararrowtext' style='display:none'>Good</div>
+            <div class='bararrowtext' style='display:none'>Bueno</div>
           </div>
         </div>
       </div>
     </div>
     <div class='info-slide-content airquality' style="display: none">
       <div class='leftpanel'>
-        <div class='thing'><div class='thingbg'></div><div class='thingtext'>Thursday</div></div>
+        <div class='thing'><div class='thingbg'></div><div class='thingtext'>Jueves</div></div>
         <div class='frost-pane airforecast'>
           <div class='bar'>
-            <div class='bar red' style="background-color:#bc1264"><span class='forecast' style="display:none">Very unhealthy</span></div>
-            <div class='bar deeporange' style="background-color:#ff552a"><span class='forecast' style="display:none">Unhealthy</span></div>
-            <div class='bar orange' style="background-color:#e5a51d"><span class='forecast' style="display:none">Unhealthy for <br>sensitive groups</span></div>
-            <div class='bar yellow' style="background-color:#d9d320"><span class='forecast' style="display:none">Moderate</span></div>
-            <div class='bar green' style="background-color:#3b9f3c"><span class='forecast' style="display:none">Good</span></div>
+            <div class='bar red' style="background-color:#bc1264"><span class='forecast' style="display:none">muy poco saludable</span></div>
+            <div class='bar deeporange' style="background-color:#ff552a"><span class='forecast' style="display:none">Malsano</span></div>
+            <div class='bar orange' style="background-color:#e5a51d"><span class='forecast' style="display:none">Malsano para <br>grupos sensibles</span></div>
+            <div class='bar yellow' style="background-color:#d9d320"><span class='forecast' style="display:none">Moderado</span></div>
+            <div class='bar green' style="background-color:#3b9f3c"><span class='forecast' style="display:none">Bueno</span></div>
             <div class='arrow'></div>
           </div>
         </div>
       </div>
       <div class='rightpanel'>
-        <div class='thing'><div class='thingbg'></div><div class='thingtext'>Primary <br>‏‏‎Contributing Pollutant</div></div>
+        <div class='thing'><div class='thingbg'></div><div class='thingtext'>Primario <br>‏‏‎Contaminante contribuyente</div></div>
         <div class='frost-pane primarypolute'>
-          <div class='pollutant'>Ozone</div>
-          <div class='source'>Source: EPA</div>
+          <div class='pollutant'>OzonO</div>
+          <div class='source'>Fuente: EPA</div>
           <div class='ozoneaction' style="display: none">
             <div class='icon' style="display: none"></div>
-            <div class='ozone' style="display: none">OZONE</div>
-            <div class='actionday' style="display: none">Action Day</div>
+            <div class='ozone' style="display: none">OZONO</div>
+            <div class='actionday' style="display: none">Día de acción</div>
           </div>
         </div>
     </div>
@@ -1356,44 +1390,44 @@
       <div class='weatherreadyheader'>
         <div class='weatherreadyheaderbg'></div>
         <div class='icon'></div>
-        <div class='weathertext'>Safety </div>
+        <div class='weathertext'>Seguridad </div>
         <div class='weathertext2'></div>
-        <div class='readytext'>Tips</div>
+        <div class='readytext'>Consejos</div>
       </div>
       <div class='thing'>
         <div class='thingbg'></div>
-        <div class='currentlytext'>Currently</div>
+        <div class='currentlytext'>Actualmente</div>
         <div class='uvtime i'>
           <div class='uvtime'>9pm</div>
-          <div class='uvday'>Mon</div>
+          <div class='uvday'>Lun</div>
         </div>
         <div class='uvtime ii'>
           <div class='uvtime'>12pm</div>
-          <div class='uvday'>Mon</div>
+          <div class='uvday'>Lun</div>
         </div>
         <div class='uvtime iii'>
           <div class='uvtime'>12pm</div>
-          <div class='uvday'>Mon</div>
+          <div class='uvday'>Lun</div>
         </div>
       </div>
       <div class='frost-pane currentuv'>
         <div class='bar'>
           <div class='num' style="display:none">1</div>
-          <div class='cat' style="display:none">Low</div>
+          <div class='cat' style="display:none">BAJO</div>
         </div>
       </div>
         <div class='frost-pane forecastuv'>
           <div class='bar i'>
             <div class='num' style="display:none">11</div>
-            <div class='cat' style="display:none">Extreme</div>
+            <div class='cat' style="display:none">ExtremO</div>
           </div>
           <div class='bar ii'>
             <div class='num' style="display:none">9</div>
-            <div class='cat' style="display:none">Very High</div>
+            <div class='cat' style="display:none">Muy alto</div>
           </div>
           <div class='bar iii'>
             <div class='num' style="display:none">11</div>
-            <div class='cat' style="display:none">Extreme</div>
+            <div class='cat' style="display:none">Extremo</div>
           </div>
           <div class='scalebar'>
             <div class='low'>0</div>
@@ -1406,9 +1440,9 @@
         <div class='weatherreadyheader'>
           <div class='weatherreadyheaderbg'></div>
           <div class='icon'></div>
-          <div class='weathertext'>Safety</div>
+          <div class='weathertext'>Seguridad</div>
           <div class='weathertext2'></div>
-          <div class='readytext'>Tips</div>
+          <div class='readytext'>Consejos</div>
         </div>
         <div class='frost-pane tipcontent'>
           <div class='wintertip2' style="display: none"><!--originally shown in November 2016--->
@@ -1460,9 +1494,13 @@
 						    <br>
 						- Woolen mittens, socks, a cap and blankets
 					</div>
-          <div class='summertip' style="display: none"><!--originally shown in June--->
-            Never leave infants, children, or pets in a parked car.
+          <div class='summertip' style="display: none">
+            <!--originally shown in June-->
+            <img src="https://cdn.star.nesdis.noaa.gov//GOES16/ABI/SECTOR/TAW/13/GOES16-TAW-13-900x540.gif" alt="Current Weather Map">
+            <p>Condiciones del tiempo actuales.</p>
+            .
           </div>
+          
           <div class='severeweathertip' style="display: none"><!--originally shown in June--->
             In case of a severe thunderstorm:
             <br><br>
@@ -1643,17 +1681,19 @@
       </div>
       <div class='info-slide-content moreinfoimage' style="display: none">
         <div class='frost-pane image'>
-          <div class='moreinfotext'>Due to how we are not an actual company/channel, we can't show health tips online. Sorry!
+          <div class='moreinfotext'>Imagen de satelite del Atlántico
           </div>
+          <img src="https://cdn.star.nesdis.noaa.gov//GOES16/ABI/SECTOR/TAW/GEOCOLOR/GOES16-TAW-GEOCOLOR-900x540.gif" alt="Weather Image">
         </div>
       </div>
   </div>
+    
   <div class="info-slide golf" style="display: none">
     <div class="info-subheader">
       <span id="subhead-titlei"></span><span id="subhead-city"></span>
     </div>
     <div class="info-subheadershadowfix">
-      <span class="subhead-title">Tee Time Forecast</span>
+      <span class="subhead-title">Previsión de la hora de salida</span>
     </div>
     <div class='info-slide-content teetime' style="display: none">
       <div class='thing'><div class='thingbg'></div></div>
@@ -1720,12 +1760,12 @@
     <div class='frost-pane left'>
       <div class='purplefooter'></div>
       <div class=forecontainer>
-      <div class='day'>Monday</div>
+      <div class='day'>LUNES</div>
       <div class='icon'></div>
       <div class='high'>83</div>
       <div class='low'>77</div>
       <div class='wind'>E 19</div>
-      <div class='golfindex'>Golf Index</div>
+      <div class='golfindex'>Indice de golf</div>
       <div class='bar'>
         <div class='bararrow'>
           <div class='bararrowtext' style='display: none'></div>
@@ -1736,14 +1776,14 @@
     <div class='frost-pane mid'>
       <div class='purplefooter'></div>
       <div class=forecontainer>
-      <div class='day'>Tuesday</div>
+      <div class='day'>Martes</div>
       <div class='icon'></div>
       <div class='high'>81</div>
       <div class='low'>75</div>
       <div class='wind'>E 15</div>
       <div class='bar'>
         <div class='bararrow'>
-          <div class='bararrowtext' style='display:none'>Low</div>
+          <div class='bararrowtext' style='display:none'>BAJO</div>
         </div>
       </div>
       </div>
@@ -1751,14 +1791,14 @@
     <div class='frost-pane right'>
       <div class='purplefooter'></div>
       <div class=forecontainer>
-      <div class='day'>Wednesday</div>
+      <div class='day'>Miercoles</div>
       <div class='icon'></div>
       <div class='high'>82</div>
       <div class='low'>73</div>
       <div class='wind'>ESE 13</div>
       <div class='bar'>
         <div class='bararrow'>
-          <div class='bararrowtext' style='display:none'>Low</div>
+          <div class='bararrowtext' style='display:none'>Bajo</div>
         </div>
       </div>
       </div>
@@ -1766,8 +1806,8 @@
   </div>
   <div class='info-slide-content golfmoreinfoimage' style="display: none">
     <div class='frost-pane infoimage'>
-      <div class='moreinfotext'>Check the forecast for any<br>
-        golf course in the U.S.<br>
+      <div class='moreinfotext'>Consulta el pronóstico para cualquier<br>
+        campo de golf en los EE.UU.<br>
         at weather.com/golf</div>
     </div>
   </div>
@@ -1777,23 +1817,24 @@
     <span id="subhead-titlei"></span><span id="subhead-city"></span>
   </div>
   <div class="info-subheadershadowfix">
-    <span class="subhead-title">Gardening Forecast</span>
+    <span class="subhead-title">Pronóstico de jardinería</span>
   </div>
   <div class='info-slide-content gardenindex' style="display: none">
-    <div class='thing'><div class='thingbg'></div><div class='thingtext'>Monday</div></div>
+    <div class='thing'><div class='thingbg'></div><div class='thingtext'>Lunes</div></div>
     <div class='frost-pane left'>
       <div class='forecastcontainer'>
       <div class='icon'></div>
-      <div class='lowtitle'>LOW</div>
-      <div class='hightitle'>HIGH</div>
+      <div class='lowtitle'>Bajo</div>
+      <div class='hightitle'>Alto</div>
       <div class='low'>76</div>
       <div class='high'>82</div>
-      <div class='precip title'>Chance of Precip</div>
+      <div class='precip title'>Probabilidad de precipitación</div>
+      
       <div class='precipvalue'>50%</div>
       </div>
     </div>
     <div class='frost-pane right'>
-      <div class='wateringindex title'>Watering Needs Index</div>
+      <div class='wateringindex title'>Índice de necesidades de riego</div>
       <div class='bar'>
         <div class='barcat' style='background-color: #58a337; left:0'><span>1</span></div>
         <div class='barcat' style='background-color: #6fb63a; left:40px;'><span>2</span></div>
@@ -1843,20 +1884,20 @@
       <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='displaynname'>Waterville Valley</span><span class='trails'>47 Trails</span></div></div>
       <div class='frost-pane'>
         <div class='newsnow title'>NEW SNOW</div>
-        <div class='basesnow title'>BASE SNOW</div>
+        <div class='basesnow title'>NIEVE BASE</div>
         <div class='newsnowv value'>6'</div>
         <div class='basesnowv value'>16 - 30'</div>
         <div class='snowcondition'>Spring</div>
       </div>
     </div>
     <div class='skilocation i'>
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='displaynname'>Waterville Valley</span><span class='trails'>47 Trails</span></div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='displaynname'>Valle de Waterville</span><span class='trails'>47 Trails</span></div></div>
       <div class='frost-pane'>
-        <div class='newsnow title'>NEW SNOW</div>
-        <div class='basesnow title'>BASE SNOW</div>
+        <div class='newsnow title'>Nieve nieve</div>
+        <div class='basesnow title'>NIEVE BASE</div>
         <div class='newsnowv value'>6'</div>
         <div class='basesnowv value'>16 - 30'</div>
-        <div class='snowcondition'>Spring</div>
+        <div class='snowcondition'>Primavera</div>
       </div>
     </div>
   </div>
@@ -1867,10 +1908,10 @@
     <span id="subhead-titlei"></span><span id="subhead-city"></span>
   </div>
   <div class="info-subheadershadowfix">
-    <span class="subhead-title">Destination Forecasts</span>
+    <span class="subhead-title">Previsiones de destino</span>
   </div>
   <div class='info-slide-content destinationforecast' style="display: none">
-    <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='daytitle i'>SUN</span><span class='daytitle ii'>MON</span><span class='daytitle iii'>TUE</span></div></div>
+    <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='daytitle i'>Hoy</span><span class='daytitle ii'>Mañana</span><span class='daytitle iii'>Dia 3</span></div></div>
     <div class='frost-pane toploc'>
       <div class='cityname'>New York</div>
       <div class='day i'>
@@ -1932,10 +1973,10 @@
       <span id="subhead-titlei"></span><span id="subhead-city"></span>
     </div>
     <div class="info-subheadershadowfix">
-      <span class="subhead-title">International Forecasts</span>
+      <span class="subhead-title">Previsiones internacionales</span>
     </div>
     <div class='info-slide-content internationalforecast' style="display: none">
-      <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='daytitle i'>SUN</span><span class='daytitle ii'>MON</span><span class='daytitle iii'>TUE</span></div></div>
+      <div class='thing'><div class='thingbg'></div><div class='thingtext'><span class='daytitle i'>Hoy</span><span class='daytitle ii'>Mañana</span><span class='daytitle iii'>Dia 3</span></div></div>
       <div class='frost-pane toploc'>
         <div class='cityname'>Madrid</div>
         <div class='day i'>
@@ -1973,7 +2014,7 @@
         </div>
       </div>
       <div class='frost-pane botloc'>
-        <div class='cityname'>Mexico City</div>
+        <div class='cityname'>Ciudad de Mexico </div>
         <div class='day i'>
           <div class='icon'></div>
           <div class='hightemp'>50</div>
@@ -2007,53 +2048,63 @@
   <div id="conditions-icon"></div>
 
   <div id="current-conditions">
-    <div id="now">now</div>
-    <div id="nowwide">now</div>
+    <div id="now">Ahora</div>
+    <div id="nowwide">Ahora</div>
     <div id="current-temp"></div>
     <div id="current-info"></div>
-    <div id="current-noreport" style="display: none">no report</div>
+    <div id="current-noreport" style="display: none">ningún informe</div>
     <div id="current-info-severe" style="display:"></div>
     <div id="current-info-details" style="display: none"></div>
   </div>
   <div id="tonight">
-    <div id="tonight-title">tonight</div>
+
+    <div id="tonight-title">Esta noche</div>
     <div id="tonight-info"></div>
     <div id="tonight-temp"></div>
-    <div id="tonight-noreport" style="display: none">no report</div>
+    <div id="tonight-noreport" style="display: none">ningún informe</div>
     <div id="tonight-info-details" style="display: none"></div>
 
   </div>
   <div id="tmrw">
-    <div id="tmrw-title">tomorrow</div>
-    <div id="tmrw-info">is broken</div>
+    <div id="tmrw-title">Mañana</div>
+    <div id="tmrw-info">Está roto</div>
     <div id="tmrw-temp">69</div>
-    <div id="tmrw-noreport" style="display: none">no report</div>
+    <div id="tmrw-noreport" style="display: none">ningún informe</div>
     <div id="tmrw-info-details" style="display: none"></div>
   </div>
+  
+  
+  
+  
+  
   <div id="minimap-cover" style="display:none">
-    <div class="gradient1"></div>
-    <div class="gradient2"></div>
-    <div class="gradient3"></div>
-  </div>
-  <div id="minimap-title"><span>PAST 3 HOURS</span></div>
-  <div id="minimap">
-    <div id="minimap-1" class="map"></div>
-    <div id="minimap-2" class="map"></div>
-    <div id="minimap-3" class="map"></div>
-  </div>
+  <div class="gradient1"></div>
+  <div class="gradient2"></div>
+  <div class="gradient3"></div>
+</div>
+<div id="minimap-title"><span>ÚLTIMAS 3 HORAS</span></div>
+<div id="minimap">
+  <div id="minimap-1" class="map"></div>
+  <div id="minimap-2" class="map"></div>
+  <div id="minimap-3" class="map"></div>
+</div>
+  
+
+
+  
   <div id="logo-area"><img src="images/WDDC.png" onerror="this.onerror=null;this.src='images/WDDC.png';"/></div>
 
   <div id="forecast-shadoww" style="background: rgba(17,17,17,0.7); box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 10px 0px;">
     <div id="normalheader" class='forecast-header'>
-      <div id="forecast-city">Nowhere:</div>
-      <div id="forecast-title"> Tonight's Forecast</div>
+      <div id="forecast-city">En ningún lugar:</div>
+      <div id="forecast-title"> Pronóstico de esta noche</div>
     </div>
     <div class="wrappertest2">
     <div id="forecast-text">
-      <div>A few clouds. Low 53. Winds light and variable.</div>
+      <div>Algunas nubes. Mínima 53. Vientos flojos y variables.</div>
     </div>
-  <div id="normaltiles" class='forecast-tiles' style="display: flex;"><div class="forecast-tile daily weekend"><div class="header">Sun</div><img class="icon" src="images/icons/24.png"><div class="high">83</div><div class="low">56</div></div><div class="forecast-tile daily"><div class="header">Mon</div><img class="icon" src="images/icons/30.png"><div class="high">65</div><div class="low">50</div></div><div class="forecast-tile daily"><div class="header">Tue</div><img class="icon" src="images/icons/24.png"><div class="high">73</div><div class="low">48</div></div><div class="forecast-tile daily"><div class="header">Wed</div><img class="icon" src="images/icons/28.png"><div class="high">77</div><div class="low">47</div></div><div class="forecast-tile daily"><div class="header">Thu</div><img class="icon" src="images/icons/28.png"><div class="high">81</div><div class="low">50</div></div></div>
-    <div id="forecast-noreport" style="display:none">Temporarily Unavailable</div>
+  <div id="normaltiles" class='forecast-tiles' style="display: flex;"><div class="forecast-tile daily weekend"><div class="header">Dom</div><img class="icon" src="images/icons/24.png"><div class="high">83</div><div class="low">56</div></div><div class="forecast-tile daily"><div class="header">Lun</div><img class="icon" src="images/icons/30.png"><div class="high">65</div><div class="low">50</div></div><div class="forecast-tile daily"><div class="header">Mar</div><img class="icon" src="images/icons/24.png"><div class="high">73</div><div class="low">48</div></div><div class="forecast-tile daily"><div class="header">Mie</div><img class="icon" src="images/icons/28.png"><div class="high">77</div><div class="low">47</div></div><div class="forecast-tile daily"><div class="header">Jue</div><img class="icon" src="images/icons/28.png"><div class="high">81</div><div class="low">50</div></div></div>
+    <div id="forecast-noreport" style="display:none">Temporalmente no disponible</div>
   </div>
   </div>
 
@@ -2072,8 +2123,23 @@
   <div id="marqueeSevere" class="marquee" style="display:none">
     uH oH!!!11! wEIRDERSCAN DID A UNLUCKY DUMPY!! cALL pICELbOI AND TELL HIM TO FIX IT!!1!1!1!1!1!1!1!1!1!1!1!1!1!1!1
   </div>
-</div>
+</div>  
 
+
+
+
+
+
+<script>
+  // Cambia la ubicación cada 2 minutos
+  setInterval(function(){
+    if(locationSettings.mainLocation.displayName == "Miami") {
+      locationSettings.mainLocation = locationSettings.secondaryLocation;
+    } else {
+      locationSettings.mainLocation = locationSettings.mainLocation;
+    }
+  }, 2 * 60 * 1000); // 2 minutos en milisegundos
+</script>
 </body>
 
 </html>
